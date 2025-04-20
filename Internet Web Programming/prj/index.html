@@ -1,0 +1,50 @@
+<!--
+Objective: 
+Creating  a weather app using HTML5, CSS3 and JavaScript.
+Search Location and Date to get the weather conditions like Temperature, Humidity, Precipitation, Wind Speed, Sunrise & Sunset Time
+We can also get the Air Quality Index(AQI). 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <h3>Weather App</h3>
+    <div class="subs">
+      <label for="city">Location: </label>
+      <select name="city" id="c1">
+        <option value="bur">Burla</option>
+        <option value="bbsr">Bhubaneswar</option>
+        <option value="ctc">Cuttack</option>
+        <option value="bam">Berhampur</option>
+      </select>
+      <br />
+      <br />
+      <label for="date">Date: </label>
+      <input type="date" />
+    </div>
+
+    <div class="weather">
+      <div id="temp">27° C</div>
+      <div id="feel">
+        Humidity: 33% <br />
+        Cloudy 27°/30°
+      </div>
+      <div id="extra">
+        AQI: 42 <br />
+        Precipitation: 69% <br />
+        Wind: 17 kmph
+      </div>
+      <div id="sun">
+        Sunrise: 0535 hrs <br />
+        Sunset: 1824 hrs
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

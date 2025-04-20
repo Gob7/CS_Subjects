@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Series</title>
+  </head>
+  <body>
+    <div id="result"></div>
+    <script>
+      let res = document.querySelector("#result");
+      let n = prompt("Enter a natural number: ", 1);
+      console.log(n);
+      n = parseInt(n);
+
+      if (n > 0) {
+        let sum = (n * (n + 1)) / 2;
+        let product = 1,
+          i;
+        for (i = 1; i <= n; i++) product *= i;
+
+        res.innerHTML = `<br> Sum of natural numbers till ${n} is ${sum}.`;
+        res.insertAdjacentHTML(
+          "beforeend",
+          `<br> Product of natural numbers till ${n} is ${product}.`
+        );
+      } else {
+        res.innerHTML = "Not a natural number!";
+        console.log("Galt input he ji...");
+      }
+    </script>
+  </body>
+</html>

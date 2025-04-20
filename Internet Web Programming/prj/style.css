@@ -1,0 +1,57 @@
+body {
+  background-color: wheat;
+}
+
+h3 {
+  text-align: center;
+  color: hotpink;
+  font-size: 60px;
+  margin: 0;
+  font-family: cursive;
+  text-decoration: underline;
+}
+
+.subs {
+  padding: 10px 0 0 100px;
+  margin-top: 10px;
+}
+
+.weather {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  align-items: center;
+  padding: 15px 18px;
+  margin: 50px 0 0 200px;
+  border-radius: 15px;
+  width: 400px;
+  height: 310px;
+  background-color: rgb(220, 203, 203);
+}
+
+.weather #temp {
+  color: rgb(29, 113, 147);
+  font-size: 60px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weather #feel {
+  color: rgb(22, 83, 22);
+  padding: 10px 0 0 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 23px;
+}
+
+.weather #extra {
+  color: rgb(174, 9, 9);
+  padding: 20px 0 0 0;
+  text-align: right;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+}
+
+.weather #sun {
+  padding: 30px 0 0 0;
+  text-align: right;
+  color: rgb(181, 81, 4);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 17px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulb</title>
+  </head>
+  <style>
+    .bulb {
+      height: 250px;
+      width: 250px;
+      border: 5px black solid;
+      border-radius: 50%;
+      margin: 50px 0 0 100px;
+    }
+    #circle1 {
+      background-color: white;
+    }
+    #circle2 {
+      background-color: yellow;
+      border-color: yellow;
+    }
+    #rect1 {
+      height: 70px;
+      width: 40px;
+      border: 3px brown solid;
+      border-radius: 10px;
+      margin-left: 210px;
+      background-color: brown;
+    }
+    #rect2 {
+      height: 10px;
+      width: 10px;
+      border: 3px black solid;
+      border-radius: 5px;
+      margin-left: 225px;
+      background-color: black;
+    }
+    button {
+      border: 3px yellow solid;
+      margin: 100px 0 0 200px;
+      height: 40px;
+      width: 70px;
+      border-radius: 7px;
+      background-color: yellow;
+      font-size: large;
+      cursor: pointer;
+    }
+    #change1 {
+      border: 3px yellow solid;
+      background-color: yellow;
+    }
+    #change2 {
+      border: 3px pink solid;
+      background-color: pink;
+    }
+  </style>
+  <body>
+    <h1>On Click Change Bulb</h1>
+    <div class="bulb" id="circle"></div>
+    <div id="rect1"></div>
+    <div id="rect2"></div>
+    <button id="change">On</button>
+  </body>
+
+  <script>
+    let chgBut = document.querySelector("#change");
+    let bulb = document.querySelector("#circle");
+    let state = true;
+
+    chgBut.addEventListener("click", (eve) => {
+      if (state) {
+        chgBut.innerHTML = "Off";
+        chgBut.id = "change2";
+        bulb.id = "circle2";
+      } else {
+        chgBut.innerHTML = "On";
+        chgBut.id = "change1";
+        bulb.id = "circle1";
+      }
+      state = !state;
+    });
+  </script>
+</html>

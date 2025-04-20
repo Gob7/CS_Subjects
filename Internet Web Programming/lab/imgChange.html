@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change Image</title>
+    <style>
+      img {
+        height: 400px;
+        width: 600px;
+        margin: 30px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>On Click Change Image</h1>
+    <br />
+    <img id="changeMe" src="./vssut.jpg" alt="Meow" />
+
+    <script>
+      let image = document.querySelector("#changeMe");
+      let curImg = true;
+
+      image.addEventListener("click", (evt) => {
+        console.log("clicked " + curImg);
+        if (curImg) image.src = "./bgt.png";
+        else image.src = "./vssut.jpg";
+        curImg = !curImg;
+      });
+    </script>
+  </body>
+</html>
