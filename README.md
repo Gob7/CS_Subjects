@@ -1,2 +1,5 @@
-# computer
-Everything inside me
+# computer science subjects
+
+B. Tech.
+Computer Science & Engineering
+Relevant Subjects and their respective codes
