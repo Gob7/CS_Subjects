@@ -157,7 +157,7 @@ int main()
         }
         cout << "\nRequest " << i << " is ";
         safe = safetyAlgorithm(n, m, newAllocate[0], newNeed[0], newAvailable);
-        safe ? cout << "\tgranted.\n" : cout << "denied.\n";
+        safe ? cout << "\tcan be granted.\n" : cout << "denied.\n";
     }
 
     return 0;
