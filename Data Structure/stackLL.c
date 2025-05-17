@@ -1,6 +1,7 @@
 // stack using linked list
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 struct node
 {
@@ -13,7 +14,7 @@ void push(int x)
     struct node *cur = (struct node *)malloc(sizeof(struct node));
     if (!cur)
     {
-        printf("Space not available.\n");
+        printf("\nStack Overflow.\n");
         return;
     }
     cur->value = x;
@@ -22,17 +23,19 @@ void push(int x)
     printf("%d pushed.\n", head->value);
 }
 
-void pop()
+int pop()
 {
     struct node *ptr = head;
     if (!head)
     {
         printf("\nStack Underflow.\n");
-        return;
+        return INT_MIN;
     }
     head = ptr->next;
     printf("%d popped.\n", ptr->value);
+    int x = ptr->value;
     free(ptr);
+    return x;
 }
 
 void peek()
@@ -56,15 +59,16 @@ void show()
     printf("\nStack Contains:\n");
     while (ptr)
     {
-        printf("%d\n", ptr->value);
+        printf("%d -> ", ptr->value);
         ptr = ptr->next;
     }
-    printf("\n");
+    printf("NULL\n\n");
 }
 
 void main()
 {
-    pop();
+    int x;
+    x = pop();
     peek();
     show();
 
@@ -77,11 +81,11 @@ void main()
     push(2);
     show();
 
-    pop();
-    pop();
+    x = pop();
+    x = pop();
     peek();
-    pop();
-    pop();
+    x = pop();
+    x = pop();
     peek();
     push(9);
     push(7);

@@ -1,5 +1,7 @@
 // Stack using array
 #include <stdio.h>
+#include <limits.h>
+
 #define limit 7
 int key = -1;
 int stack[limit];
@@ -28,14 +30,15 @@ void push(int x)
     printf("%d is pushed.\n", stack[key]);
 }
 
-void pop()
+int pop()
 {
     if (isEmpty())
     {
         printf("\nStack Underflow.\n");
-        return;
+        return INT_MIN;
     }
-    printf("%d is popped.\n", stack[key--]);
+    printf("%d is popped.\n", stack[key]);
+    return stack[key--];
 }
 
 void peek()
@@ -57,13 +60,15 @@ void show()
     }
     printf("\nStack contains:\n");
     for (int i = key; i > -1; i--)
-        printf("%d\n", stack[i]);
-    printf("\n");
+        printf("%d -> ", stack[i]);
+    printf("NULL\n\n");
 }
 
 void main()
 {
-    pop();
+    int x;
+    x = pop();
+    x = pop();
     peek();
     show();
 
@@ -78,11 +83,11 @@ void main()
     push(7);
     show();
 
-    pop();
-    pop();
+    x = pop();
+    x = pop();
     peek();
-    pop();
-    pop();
+    x = pop();
+    x = pop();
     peek();
     push(9);
     push(7);

@@ -1,34 +1,43 @@
 // queue using linked list
+// insert at end and delete from front
 #include <stdio.h>
 #include <stdlib.h>
-struct node {
+
+struct node
+{
     int value;
     struct node *next;
 } *head = NULL;
 
-void enQueue(int x){
+void enQueue(int x)
+{
     struct node *ptr, *cur;
     ptr = head;
-    cur = (struct node *) malloc(sizeof(struct node));
-    if (!cur){
+    cur = (struct node *)malloc(sizeof(struct node));
+    if (!cur)
+    {
         printf("Space not available.\n");
         return;
     }
 
     cur->value = x;
     cur->next = NULL;
-    if (!head){
+    if (!head)
         head = cur;
-        return;
+    else
+    {
+        while (ptr->next)
+            ptr = ptr->next;
+        ptr->next = cur;
     }
-    while (ptr->next)
-        ptr = ptr->next;
-    ptr->next = cur;
     printf("%d inserted.\n", cur->value);
 }
-void deQueue(){
+
+void deQueue()
+{
     struct node *ptr = head;
-    if (!head){
+    if (!head)
+    {
         printf("\nQueue Underflow.\n");
         return;
     }
@@ -37,27 +46,35 @@ void deQueue(){
     free(ptr);
 }
 
-void peek(){
-    if (!head){
+void peek()
+{
+    if (!head)
+    {
         printf("\nQueue Underflow.\n");
         return;
     }
     printf("%d is peeked.\n", head->value);
 }
-void show(){
+
+void show()
+{
     struct node *ptr = head;
-    if (!head){
+    if (!head)
+    {
         printf("\nQueue Underflow.\n");
         return;
     }
     printf("\nQueue Contains:\n");
-    while (ptr){
-        printf("%d\n", ptr->value);
+    while (ptr)
+    {
+        printf("%d -> ", ptr->value);
         ptr = ptr->next;
     }
-    printf("\n");
+    printf("NULL\n");
 }
-void main(){
+
+void main()
+{
     deQueue();
     peek();
     show();
@@ -72,7 +89,7 @@ void main(){
     show();
 
     deQueue();
-    deQueue(); 
+    deQueue();
     peek();
     deQueue();
     deQueue();

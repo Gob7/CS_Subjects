@@ -3,30 +3,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(string str){
-    stack <int> stk;
+int solve(string str)
+{
+    stack<int> stk;
     string sstr;
     int i, start = -1, end, n, x, y;
     // cout<<str<<endl;
 
-    for (i=0; i<str.length(); i++){
+    for (i = 0; i < str.length(); i++)
+    {
         // cout<<str[i]<<endl;
-        if (str[i] >= '0' && str[i] <= '9'){
+        if (str[i] >= '0' && str[i] <= '9')
+        {
             if (start == -1)
                 start = i;
             end = i;
         }
 
-        else if (str[i] == ' '){
-            if (start != -1){
-                sstr = str.substr(start, end-start+1);
+        else if (str[i] == ' ')
+        {
+            if (start != -1)
+            {
+                sstr = str.substr(start, end - start + 1);
                 n = stoi(sstr);
                 stk.push(n);
                 start = -1;
             }
         }
 
-        else{
+        else
+        {
             if (stk.size() < 2)
                 return INT_MIN;
             x = stk.top();
@@ -35,17 +41,17 @@ int solve(string str){
             stk.pop();
 
             if (str[i] == '^')
-                stk.push(pow(y,x));
+                stk.push(pow(y, x));
             else if (str[i] == '/')
-                stk.push(y/x);
+                stk.push(y / x);
             else if (str[i] == '*')
-                stk.push(y*x);
+                stk.push(y * x);
             else if (str[i] == '%')
-                stk.push(y%x);
+                stk.push(y % x);
             else if (str[i] == '+')
-                stk.push(y+x);
+                stk.push(y + x);
             else if (str[i] == '-')
-                stk.push(y-x);
+                stk.push(y - x);
             else
                 return INT_MIN;
             // cout<<stk.top()<<endl;
@@ -56,7 +62,8 @@ int solve(string str){
     return stk.top();
 }
 
-int main(){
+int main()
+{
     string str;
     cout << "POSTFIX: ";
     getline(cin, str);
