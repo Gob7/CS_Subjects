@@ -10,14 +10,15 @@ struct node
 int traverse()
 {
     struct node *ptr = head;
-    printf("\nLinked list:\n");
+    printf("\nLinked List:\n");
     int x = 0;
     while (ptr)
     {
-        printf("%d\n", ptr->data);
+        printf("%d -> ", ptr->data);
         ptr = ptr->next;
         x++;
     }
+    printf("NULL\n");
     return x;
 }
 
@@ -26,7 +27,7 @@ void traverse_back(struct node *ptr)
     if (!ptr)
         return;
     traverse_back(ptr->next);
-    printf("%d\n", ptr->data);
+    printf("%d, ", ptr->data);
 }
 
 void insert_first(int x)
@@ -101,9 +102,9 @@ void search(int x)
     while (ptr && ptr->data != x)
         ptr = ptr->next;
     if (ptr)
-        printf("%d present in linked list.\n", x);
+        printf("%d is present in linked list.\n", x);
     else
-        printf("%d absent in linked list.\n", x);
+        printf("%d is absent in linked list.\n", x);
 }
 
 void last_node()
@@ -138,11 +139,12 @@ void alternate()
     printf("\nAlternate elements:\n");
     while (ptr && ptr->next)
     {
-        printf("%d\n", ptr->data);
+        printf("%d, ", ptr->data);
         ptr = ptr->next->next;
     }
     if (ptr)
-        printf("%d\n", ptr->data);
+        printf("%d, ", ptr->data);
+    printf("\n");
 }
 
 void reverse(struct node *ptr)
@@ -163,94 +165,35 @@ void reverse(struct node *ptr)
     }
 }
 
-struct node *insertFirst(int x, struct node *list)
-{
-    struct node *cur = (struct node *)malloc(sizeof(struct node));
-    cur->data = x;
-    cur->next = list;
-    printf("cur->data = %d\n", cur->data);
-    return cur;
-}
-
-int convertNumber(struct node *list)
-{
-    int x = 0;
-    while (!list)
-    {
-        x *= 10;
-        x += list->data;
-        list = list->next;
-    }
-    return x;
-}
-
-struct node *AddTwoNumbers(struct node *list1, struct node *list2)
-{
-    struct node *ans = NULL;
-    int a, b, i;
-    a = convertNumber(list1);
-    b = convertNumber(list2);
-    a += b;
-    while (a)
-    {
-        i = a % 10;
-        ans = insertFirst(i, ans);
-        a /= 10;
-    }
-    return ans;
-}
-
-void print(struct node *list)
-{
-    printf("Num = ");
-    while (!list)
-    {
-        printf("%d", list->data);
-        list = list->next;
-    }
-    printf("\n");
-}
-
 void main()
 {
-    // int x;
-    // insert_last(10);
-    // insert_first(20);
-    // insert_first(30);
-    // insert_first(40);
-    // insert_last(50);
-    // insert_last(60);
-    // insert_first(70);
+    int x;
+    insert_last(10);
+    insert_first(20);
+    insert_first(30);
+    insert_first(40);
+    insert_last(50);
+    insert_last(60);
+    insert_first(70);
 
-    // x = traverse();
-    // printf("Length = %d\n", x);
-    // second_last();
-    // last_node();
-    // alternate();
-    // delete_first();
-    // delete_last();
-    // delete_last();
-    // printf("\nReverse of linked list:\n");
-    // traverse_back(head);
+    x = traverse();
+    printf("Length = %d\n\n", x);
+    second_last();
+    last_node();
+    alternate();
+    delete_first();
+    delete_last();
+    delete_last();
+    printf("\nReverse of Linked List:\n");
+    traverse_back(head);
 
-    // reverse(head);
-    // delete_first();
-    // x = traverse();
-    // printf("Length = %d\n", x);
+    reverse(head);
+    printf("\nLinked List is reversed.\n");
+    delete_first();
+    x = traverse();
+    printf("Length = %d\n\n", x);
 
-    // printf("Enter element to search: ");
-    // scanf("%d", &x);
-    // search(x);
-
-    struct node *list1 = NULL, *list2 = NULL, *list = NULL;
-    list1 = insertFirst(3, list1);
-    list1 = insertFirst(0, list1);
-    list1 = insertFirst(4, list1);
-    list2 = insertFirst(1, list2);
-    list2 = insertFirst(5, list2);
-    list2 = insertFirst(2, list2);
-    print(list1);
-    print(list2);
-    list = AddTwoNumbers(list1, list2);
-    print(list);
+    printf("Enter element to search: ");
+    scanf("%d", &x);
+    search(x);
 }
