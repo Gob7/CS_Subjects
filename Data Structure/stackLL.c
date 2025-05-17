@@ -1,25 +1,32 @@
-//stack using linked list
+// stack using linked list
 #include <stdio.h>
 #include <stdlib.h>
-struct node {
+
+struct node
+{
     int value;
     struct node *next;
 } *head = NULL;
 
-void push(int x){
-    struct node *cur = (struct node *) malloc(sizeof(struct node));
-    if (!cur){
+void push(int x)
+{
+    struct node *cur = (struct node *)malloc(sizeof(struct node));
+    if (!cur)
+    {
         printf("Space not available.\n");
         return;
     }
     cur->value = x;
     cur->next = head;
-    head = cur; 
+    head = cur;
     printf("%d pushed.\n", head->value);
 }
-void pop(){
+
+void pop()
+{
     struct node *ptr = head;
-    if (!head){
+    if (!head)
+    {
         printf("\nStack Underflow.\n");
         return;
     }
@@ -28,28 +35,35 @@ void pop(){
     free(ptr);
 }
 
-void peek(){
-    if (!head){
+void peek()
+{
+    if (!head)
+    {
         printf("\nStack Underflow.\n");
         return;
     }
     printf("%d is peeked.\n", head->value);
 }
-void show(){
+
+void show()
+{
     struct node *ptr = head;
-    if (!head){
+    if (!head)
+    {
         printf("\nStack Underflow.\n");
         return;
     }
     printf("\nStack Contains:\n");
-    while (ptr){
+    while (ptr)
+    {
         printf("%d\n", ptr->value);
         ptr = ptr->next;
     }
     printf("\n");
 }
 
-void main(){
+void main()
+{
     pop();
     peek();
     show();
@@ -64,7 +78,7 @@ void main(){
     show();
 
     pop();
-    pop(); 
+    pop();
     peek();
     pop();
     pop();
