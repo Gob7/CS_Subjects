@@ -1,40 +1,44 @@
 // binary search tree
-// duplicate value not allowed
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "treePrint.h"
 
-void insert(int x){
+void insert(int x)
+{
     struct node *ptr, *cur;
-    cur = (struct node *) malloc(sizeof(struct node));
+    cur = (struct node *)malloc(sizeof(struct node));
     ptr = root;
     cur->value = x;
     cur->left = NULL;
     cur->right = NULL;
 
-    if (!ptr){
+    if (!ptr)
+    {
         root = cur;
         return;
     }
-    while (ptr->value != cur->value){
-
-        if (ptr->value > cur->value){
+    // duplicate value not allowed.
+    while (ptr->value != cur->value)
+    {
+        if (ptr->value > cur->value)
+        {
             if (!ptr->left)
                 ptr->left = cur;
             ptr = ptr->left;
         }
-        
-        else{
+        else if (ptr->value < cur->value)
+        {
             if (!ptr->right)
-                ptr->right = cur;            
-            ptr = ptr->right;  
+                ptr->right = cur;
+            ptr = ptr->right;
         }
     }
     // printf("%d added.\n", ptr->value);
 }
 
-void zeroDelete(struct node *ptr, struct node *cur){
+void zeroDelete(struct node *ptr, struct node *cur)
+{
     if (root == cur)
         root = NULL;
     else if (ptr->left == cur)
@@ -43,7 +47,11 @@ void zeroDelete(struct node *ptr, struct node *cur){
         ptr->right = NULL;
     free(cur);
 }
-void oneDelete(struct node *ptr, struct node *cur){
+
+// can be optimized;
+// but better to keep it simple for understanding.
+void oneDelete(struct node *ptr, struct node *cur)
+{
     if (root == cur && cur->left)
         root = cur->left;
 
@@ -64,11 +72,16 @@ void oneDelete(struct node *ptr, struct node *cur){
 
     free(cur);
 }
-void twoDelete(struct node *cur){
+
+void twoDelete(struct node *cur)
+{
+    // find the largest value in the left subtree;
+    // swap it with the current node; then delete the largest node.
     struct node *next, *ptr;
     ptr = cur;
     next = cur->left;
-    while (next->right){
+    while (next->right)
+    {
         ptr = next;
         next = next->right;
     }
@@ -81,10 +94,13 @@ void twoDelete(struct node *cur){
     else
         zeroDelete(ptr, next);
 }
-void delete(struct node *ptr, struct node *cur, int x){
+
+void delete(struct node *ptr, struct node *cur, int x)
+{
     if (!cur)
         return;
-    if (cur->value == x){
+    if (cur->value == x)
+    {
         if (cur->left && cur->right)
             twoDelete(cur);
         else if (!cur->left && !cur->right)
@@ -98,7 +114,8 @@ void delete(struct node *ptr, struct node *cur, int x){
         delete(cur, cur->right, x);
 }
 
-bool search(int x, struct node *ptr){
+bool search(int x, struct node *ptr)
+{
     if (!ptr)
         return false;
     if (ptr->value == x)
@@ -109,9 +126,10 @@ bool search(int x, struct node *ptr){
         search(x, ptr->right);
 }
 
-void main(){
+void main()
+{
     delete(NULL, root, 0);
-    printf("\nDelete 0");
+    printf("\n\tDeleted 0");
     print();
 
     insert(100);
@@ -133,20 +151,20 @@ void main(){
     insert(35);
     print();
 
-    //zero = 90; one = 20
+    // zero = 90; one = 20
     delete(NULL, root, 90);
     delete(NULL, root, 20);
-    printf("\nDelete 20, 90");
+    printf("\n\t\t\t\t\tDeleted 20, 90");
     print();
 
-    //two = 50, 150
+    // two = 50, 150
     delete(NULL, root, 50);
     delete(NULL, root, 150);
-    printf("\nDelete 50, 150");
+    printf("\n\t\t\t\tDeleted 50, 150");
     print();
 
-    //root = 100
+    // root = 100
     delete(NULL, root, 100);
-    printf("\nDelete 100");
+    printf("\n\t\t\tDeleted 100 (root)");
     print();
 }
