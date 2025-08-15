@@ -22,15 +22,15 @@ int traverse()
     return x;
 }
 
-void traverse_back(struct node *ptr)
+void traverseBack(struct node *ptr)
 {
     if (!ptr)
         return;
-    traverse_back(ptr->next);
+    traverseBack(ptr->next);
     printf("%d, ", ptr->data);
 }
 
-void insert_first(int x)
+void insertStart(int key)
 {
     struct node *cur = (struct node *)malloc(sizeof(struct node));
     if (!cur)
@@ -38,13 +38,13 @@ void insert_first(int x)
         printf("Space not available.\n");
         return;
     }
-    cur->data = x;
+    cur->data = key;
     cur->next = head;
     head = cur;
     printf("%d is inserted at head.\n", head->data);
 }
 
-void insert_last(int x)
+void insertEnd(int key)
 {
     struct node *ptr, *cur;
     ptr = head;
@@ -54,7 +54,7 @@ void insert_last(int x)
         printf("Space not available.\n");
         return;
     }
-    cur->data = x;
+    cur->data = key;
     cur->next = NULL;
     if (!head)
     {
@@ -68,7 +68,11 @@ void insert_last(int x)
     printf("%d is inserted at tail.\n", ptr->next->data);
 }
 
-void delete_first()
+void insertAtStart(int key, int index) {}
+
+void insertAtEnd(int key, int index) {}
+
+void deleteStart()
 {
     struct node *ptr = head;
     if (!head)
@@ -78,7 +82,7 @@ void delete_first()
     free(ptr);
 }
 
-void delete_last()
+void deleteEnd()
 {
     struct node *ptr = head;
     if (!ptr)
@@ -88,6 +92,7 @@ void delete_last()
         head = NULL;
         printf("%d is deleted from head.\n", ptr->data);
         free(ptr);
+        return;
     }
     while (ptr->next->next)
         ptr = ptr->next;
@@ -96,18 +101,49 @@ void delete_last()
     ptr->next = NULL;
 }
 
-void search(int x)
+void deleteFromStart(int index)
 {
-    struct node *ptr = head;
-    while (ptr && ptr->data != x)
-        ptr = ptr->next;
-    if (ptr)
-        printf("%d is present in linked list.\n", x);
-    else
-        printf("%d is absent in linked list.\n", x);
+    struct node *cur = head, *ptr;
+    int length;
+    length = traverse();
+    if (length == 0 || index <= 0 || index > length)
+    {
+        printf("Wrong input.\n");
+        return;
+    }
+    if (index == 1)
+    {
+        head = head->next;
+        printf("%d is deleted from head at index 1.\n", cur->data);
+        free(cur);
+        return;
+    }
+    for (int i = 1; i < index - 1; i++)
+        cur = cur->next;
+    ptr = cur->next;
+    cur->next = ptr->next;
+    printf("%d is deleted from head at index %d.\n", ptr->data, index);
+    free(ptr);
 }
 
-void last_node()
+void deleteFromEnd(int index) {}
+
+void searchNode(int key)
+{
+    struct node *ptr = head;
+    int index = 1;
+    while (ptr && ptr->data != key)
+    {
+        ptr = ptr->next;
+        index++;
+    }
+    if (ptr)
+        printf("%d is present at index %d.\n", key, index);
+    else
+        printf("%d is absent in linked list.\n", key);
+}
+
+void lastNode()
 {
     struct node *ptr = head;
     if (!ptr)
@@ -117,10 +153,10 @@ void last_node()
     }
     while (ptr->next)
         ptr = ptr->next;
-    printf("Last element of linked list = %d\n", ptr->data);
+    printf("Last element of linked list\t\t:\t%d\n", ptr->data);
 }
 
-void second_last()
+void secondLastNode()
 {
     struct node *ptr = head;
     if (!ptr || !ptr->next)
@@ -130,13 +166,13 @@ void second_last()
     }
     while (ptr->next->next)
         ptr = ptr->next;
-    printf("Second last element of linked list = %d\n", ptr->data);
+    printf("Second last element of linked list\t:\t%d\n", ptr->data);
 }
 
-void alternate()
+void alternateNode()
 {
     struct node *ptr = head;
-    printf("\nAlternate elements:\n");
+    printf("\nAlternate elements\t\t\t:\t");
     while (ptr && ptr->next)
     {
         printf("%d, ", ptr->data);
@@ -147,7 +183,7 @@ void alternate()
     printf("\n");
 }
 
-void reverse(struct node *ptr)
+void reverseList(struct node *ptr)
 {
     struct node *cur = ptr;
     if (!head)
@@ -155,7 +191,7 @@ void reverse(struct node *ptr)
     if (ptr->next)
     {
         ptr = ptr->next;
-        reverse(ptr);
+        reverseList(ptr);
         ptr->next = cur;
     }
     else
@@ -165,35 +201,76 @@ void reverse(struct node *ptr)
     }
 }
 
+void checkPalindrome()
+{
+    struct node *ptr = head, *cur = NULL, *temp;
+    int length = traverse();
+    while (ptr)
+    {
+        temp = (struct node *)malloc(sizeof(struct node));
+        if (!temp)
+            return;
+        temp->data = ptr->data;
+        temp->next = cur;
+        cur = temp;
+        ptr = ptr->next;
+    }
+    ptr = head;
+    while (ptr && cur)
+    {
+        if (ptr->data != cur->data)
+        {
+            printf("\nLinked List is not a palindrome.\n");
+            return;
+        }
+        ptr = ptr->next;
+        cur = cur->next;
+    }
+    printf("\nLinked List is a palindrome!\n");
+}
+
 void main()
 {
-    int x;
-    insert_last(10);
-    insert_first(20);
-    insert_first(30);
-    insert_first(40);
-    insert_last(50);
-    insert_last(60);
-    insert_first(70);
+    int length, key;
 
-    x = traverse();
-    printf("Length = %d\n\n", x);
-    second_last();
-    last_node();
-    alternate();
-    delete_first();
-    delete_last();
-    delete_last();
-    printf("\nReverse of Linked List:\n");
-    traverse_back(head);
+    // deleteFromStart(1);
+    // insertEnd(10);
+    // deleteFromStart(0);
+    // insertStart(20);
+    // deleteFromStart(1);
+    // insertStart(30);
+    // insertStart(40);
+    // insertEnd(50);
+    // insertEnd(60);
+    // insertStart(70);
 
-    reverse(head);
-    printf("\nLinked List is reversed.\n");
-    delete_first();
-    x = traverse();
-    printf("Length = %d\n\n", x);
+    // length = traverse();
+    // printf("Length = %d\n", length);
+    // printf("\nEnter element to search\t\t\t:\t");
+    // scanf("%d", &key);
+    // searchNode(key);
 
-    printf("Enter element to search: ");
-    scanf("%d", &x);
-    search(x);
+    // secondLastNode();
+    // lastNode();
+    // alternateNode();
+    // deleteStart();
+    // deleteEnd();
+    // deleteEnd();
+    // printf("\nReverse of Linked List\t\t\t:\t");
+    // traverseBack(head);
+
+    // reverseList(head);
+    // printf("\nLinked List is reversed.\n");
+    // deleteStart();
+    // deleteFromStart(2);
+
+    // insertStart(1);
+    // insertEnd(1);
+    // insertStart(2);
+    // insertEnd(2);
+    // insertStart(3);
+    // insertEnd(3);
+    // insertStart(4);
+    // insertEnd(4);
+    // checkPalindrome();
 }
