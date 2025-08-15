@@ -126,7 +126,35 @@ void deleteFromStart(int index)
     free(ptr);
 }
 
-void deleteFromEnd(int index) {}
+void deleteFromEnd(int index)
+{
+    struct node *cur = head, *ptr = head;
+    int length, i;
+    length = traverse();
+    if (length == 0 || index <= 0 || index > length)
+    {
+        printf("Wrong input.\n");
+        return;
+    }
+    for (i = 0; i < index; i++)
+        ptr = ptr->next;
+    if (!ptr)
+    {
+        head = head->next;
+        printf("%d is deleted from tail at index 1.\n", cur->data);
+        free(cur);
+        return;
+    }
+    while (ptr->next)
+    {
+        ptr = ptr->next;
+        cur = cur->next;
+    }
+    ptr = cur->next;
+    cur->next = ptr->next;
+    printf("%d is deleted from tail at index %d.\n", ptr->data, length - index + 1);
+    free(ptr);
+}
 
 void searchNode(int key)
 {
@@ -234,10 +262,13 @@ void main()
     int length, key;
 
     // deleteFromStart(1);
+    // deleteFromEnd(1);
     // insertEnd(10);
     // deleteFromStart(0);
+    // deleteFromEnd(0);
     // insertStart(20);
     // deleteFromStart(1);
+    // deleteFromEnd(2);
     // insertStart(30);
     // insertStart(40);
     // insertEnd(50);
@@ -250,6 +281,8 @@ void main()
     // scanf("%d", &key);
     // searchNode(key);
 
+    // deleteFromStart(100);
+    // deleteFromEnd(100);
     // secondLastNode();
     // lastNode();
     // alternateNode();
@@ -263,6 +296,9 @@ void main()
     // printf("\nLinked List is reversed.\n");
     // deleteStart();
     // deleteFromStart(2);
+    // deleteFromStart(5);
+    // deleteFromEnd(1);
+    // deleteFromEnd(4);
 
     // insertStart(1);
     // insertEnd(1);
