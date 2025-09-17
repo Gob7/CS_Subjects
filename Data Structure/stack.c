@@ -3,31 +3,31 @@
 #include <limits.h>
 
 #define limit 7
-int key = -1;
+int top = -1;
 int stack[limit];
 
 int isEmpty()
 {
-    if (key == -1)
+    if (top == -1)
         return 1;
     return 0;
 }
 int isFull()
 {
-    if (key == limit - 1)
+    if (top == limit - 1)
         return 1;
     return 0;
 }
 
-void push(int x)
+void push(int key)
 {
     if (isFull())
     {
         printf("\nStack Overflow.\n");
         return;
     }
-    stack[++key] = x;
-    printf("%d is pushed.\n", stack[key]);
+    stack[++top] = key;
+    printf("%d is pushed.\n", stack[top]);
 }
 
 int pop()
@@ -37,8 +37,8 @@ int pop()
         printf("\nStack Underflow.\n");
         return INT_MIN;
     }
-    printf("%d is popped.\n", stack[key]);
-    return stack[key--];
+    printf("%d is popped.\n", stack[top]);
+    return stack[top--];
 }
 
 void peek()
@@ -48,7 +48,7 @@ void peek()
         printf("\nStack Underflow.\n");
         return;
     }
-    printf("%d is peeked.\n", stack[key]);
+    printf("%d is peeked.\n", stack[top]);
 }
 
 void show()
@@ -58,17 +58,17 @@ void show()
         printf("\nStack Underflow.\n");
         return;
     }
-    printf("\nStack contains:\n");
-    for (int i = key; i > -1; i--)
+    printf("\nStack contains:\nTOP -> ");
+    for (int i = top; i > -1; i--)
         printf("%d -> ", stack[i]);
     printf("NULL\n\n");
 }
 
 void main()
 {
-    int x;
-    x = pop();
-    x = pop();
+    int key;
+    key = pop();
+    key = pop();
     peek();
     show();
 
@@ -83,11 +83,11 @@ void main()
     push(7);
     show();
 
-    x = pop();
-    x = pop();
+    key = pop();
+    key = pop();
     peek();
-    x = pop();
-    x = pop();
+    key = pop();
+    key = pop();
     peek();
     push(9);
     push(7);
