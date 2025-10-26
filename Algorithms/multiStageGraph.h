@@ -13,7 +13,7 @@ Assumptions:
 #include <bits/stdc++.h>
 using namespace std;
 
-int minCostMultiStage(int c[][nodes], int *nodeLevel, int levels, int cost[][nodes], int path[][nodes])
+int minCostMultiStage(const int input[][nodes], int *nodeLevel, int levels, int cost[][nodes], int path[][nodes])
 {
     int stage, vertex, k, j1, j2, y, z;
     int *ptr;
@@ -34,22 +34,22 @@ int minCostMultiStage(int c[][nodes], int *nodeLevel, int levels, int cost[][nod
 
             if (stage == levels - 1)
             {
-                cost[stage][vertex] = c[vertex][nodes - 1];
+                cost[stage][vertex] = input[vertex][nodes - 1];
                 path[stage][vertex] = nodes - 1;
             }
             else
             {
                 int arr[y];
                 fill(arr, arr + y, INT_MAX);
-                // cout<<endl;
+                // cout << endl;
 
                 for (; k < z; k++)
                 {
-                    if (c[vertex][k] != INT_MAX)
+                    if (input[vertex][k] != INT_MAX)
                     {
-                        // cout<<"j = "<<vertex+1<<", k = "<<k<<";\t"<<c[vertex][k]<<"+"<<cost[stage+1][k];
-                        arr[k - j2] = c[vertex][k] + cost[stage + 1][k];
-                        // cout<<" = "<<arr[k-j2]<<endl;
+                        // cout << "j = " << vertex + 1 << ", k = " << k << ";\t" << c[vertex][k] << "+" << cost[stage + 1][k];
+                        arr[k - j2] = input[vertex][k] + cost[stage + 1][k];
+                        // cout << " = " << arr[k - j2] << endl;
                     }
                 }
                 z = *min_element(arr, arr + y);
@@ -57,8 +57,8 @@ int minCostMultiStage(int c[][nodes], int *nodeLevel, int levels, int cost[][nod
                 ptr = find(arr, arr + y, z);
                 path[stage][vertex] = j2 + (ptr - arr);
             }
-            // cout<<"cost("<<stage<<", "<<vertex+1<<") = "<<cost[stage][vertex]<<endl;
-            // cout<<"Path = "<<path[stage][vertex]+1<<endl<<endl;
+            // cout << "cost(" << stage << ", " << vertex + 1 << ") = " << cost[stage][vertex] << endl;
+            // cout << "Path = " << path[stage][vertex] + 1 << "\n\n";
         }
     }
 

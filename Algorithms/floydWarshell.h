@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void allPairShortestPath(int input[][nodes], int allPair[][nodes])
+void allPairShortestPath(const int input[][nodes], int output[][nodes])
 {
     int i, j, k, temp[nodes][nodes];
     copyGraph(input, temp);
@@ -13,12 +13,12 @@ void allPairShortestPath(int input[][nodes], int allPair[][nodes])
             for (j = 0; j < nodes; j++)
             {
                 if (temp[i][k] == INT_MAX || temp[k][j] == INT_MAX)
-                    allPair[i][j] = temp[i][j];
+                    output[i][j] = temp[i][j];
                 else
-                    allPair[i][j] = min(temp[i][j], temp[i][k] + temp[k][j]);
+                    output[i][j] = min(temp[i][j], temp[i][k] + temp[k][j]);
             }
         }
         // graphPrint(d);
-        copyGraph(allPair, temp);
+        copyGraph(output, temp);
     }
 }
