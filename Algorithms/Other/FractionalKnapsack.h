@@ -2,39 +2,54 @@
 using namespace std;
 
 // Fractional Knapsack (Greedy Approach)
-float fractionalKnapsack(float *weight, float *profit, int length, float capacity, float *fraction)
+void fractionalKnapsack(const float *weight,
+                        const float *profit,
+                        const int length,
+                        const float capacity)
 {
     int i;
-    float maxPro = 0;
+    float maxProfit = 0.0,
+          newCapacity = capacity,
+          newWeight[length],
+          newProfit[length],
+          fraction[length],
+          ratio[length];
+
+    copy(weight, weight + length, newWeight);
+    copy(profit, profit + length, newProfit);
+    for (i = 0; i < length; i++)
+        ratio[i] = profit[i] / weight[i];
 
     if (accumulate(weight, weight + length, 0) <= capacity)
     {
-        maxPro = accumulate(profit, profit + length, 0);
+        maxProfit = accumulate(profit, profit + length, 0);
         fill(fraction, fraction + length, 1);
     }
     else
     {
-        float ratio[length];
-        for (i = 0; i < length; i++)
-            ratio[i] = profit[i] / weight[i];
-
-        descending_order(ratio, 0, length, 2, weight, profit);
+        descending_order(ratio, 0, length, 2, newWeight, newProfit);
         i = 0;
-        while (capacity > 0)
+        while (newCapacity > 0)
         {
-            fraction[i] = capacity / weight[i] > 1 ? 1 : capacity / weight[i];
-            capacity -= fraction[i] * weight[i];
-            maxPro += fraction[i] * profit[i];
+            fraction[i] = newCapacity / newWeight[i] > 1 ? 1 : newCapacity / newWeight[i];
+            newCapacity -= fraction[i] * newWeight[i];
+            maxProfit += fraction[i] * newProfit[i];
             i++;
         }
         fill(fraction + i, fraction + length, 0);
     }
-    return maxPro;
+
+    cout << "\nWeight\t\t: ";
+    arrPrint(newWeight, 0, length);
+    cout << "Fraction\t: ";
+    arrPrint(fraction, 0, length);
+    cout << "Maximum Profit\t= " << maxProfit << endl;
 }
 
 // Wannabe Binary Knapsack
-float wannabeBK(float *weight, float *profit, int length, float capacity, float *fraction)
+float wannabeBK(float *weight, float *profit, int length, float capacity)
 {
+    float fraction[length];
     int i;
 
     if (accumulate(weight, weight + length, 0) <= capacity)
