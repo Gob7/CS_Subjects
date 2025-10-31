@@ -17,8 +17,8 @@ plt.plot(x, y2, label=r"$x^2$", color="red")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.title("Graphs of $2^x$ and $x^2$")
-plt.axhline(0, color='black',linewidth=0.5)
-plt.axvline(0, color='black',linewidth=0.5)
+plt.axhline(0, color="black", linewidth=0.5)
+plt.axvline(0, color="black", linewidth=0.5)
 plt.grid(True)
 
 # Add a legend

@@ -11,99 +11,21 @@ void initGraph(int input[][nodes])
     }
 }
 
-void makeGraph(int input[][nodes])
-{
-    /*
-    // 4 nodes
-    input[0][1] = 8;
-    input[0][3] = 1;
-
-    input[1][2] = 1;
-
-    input[2][0] = 4;
-
-    input[3][1] = 2;
-    input[3][2] = 9;
-    */
-    /*
-    // 4 nodes
-    input[0][1] = 3;
-    input[0][2] = 8;
-
-    input[1][2] = 4;
-    input[1][3] = 11;
-
-    input[2][3] = 7;
-
-    input[3][0] = 4;
-    */
-
-    // 8 nodes
-    input[0][1] = 1;
-    input[0][3] = 1;
-    input[0][4] = 1;
-
-    input[1][2] = 1;
-    input[1][3] = 1;
-
-    input[2][0] = 1;
-
-    input[3][2] = 1;
-
-    input[4][3] = 1;
-    input[4][5] = 1;
-
-    input[5][3] = 1;
-
-    input[6][4] = 1;
-    input[6][5] = 1;
-    input[6][7] = 1;
-
-    input[7][3] = 1;
-
-    /*
-    // 12 nodes
-    input[0][1] = 9;
-    input[0][2] = 7;
-    input[0][3] = 3;
-    input[0][4] = 2;
-
-    input[1][5] = 4;
-    input[1][6] = 2;
-    input[1][7] = 1;
-
-    input[2][5] = 2;
-    input[2][6] = 7;
-
-    input[3][7] = 11;
-
-    input[4][6] = 11;
-    input[4][7] = 8;
-
-    input[5][8] = 6;
-    input[5][9] = 5;
-
-    input[6][8] = 4;
-    input[6][9] = 3;
-
-    input[7][9] = 5;
-    input[7][10] = 6;
-
-    input[8][11] = 4;
-
-    input[9][11] = 2;
-
-    input[10][11] = 3;
-    */
-}
-
-void initMultiStage(int cost[][nodes], int path[][nodes], int levels)
+void initMultiStageGraph(int cost[][nodes], int path[][nodes], int levels)
 {
     for (int i = 0; i < levels; i++)
     {
         fill(cost[i], cost[i] + nodes, -1);
         fill(path[i], path[i] + nodes, -1);
     }
+}
+
+void initUndirectedGraph() {}
+
+void copyGraph(const int source[][nodes], int destination[][nodes])
+{
+    for (int i = 0; i < nodes; i++)
+        copy(source[i], source[i] + nodes, destination[i]);
 }
 
 void pathPrint(const int levels, const int path[][nodes])
@@ -116,12 +38,6 @@ void pathPrint(const int levels, const int path[][nodes])
         j = path[i][j];
     }
     cout << j + 1 << " ]\n\n";
-}
-
-void copyGraph(const int source[][nodes], int destination[][nodes])
-{
-    for (int i = 0; i < nodes; i++)
-        copy(source[i], source[i] + nodes, destination[i]);
 }
 
 void printGraph(const int input[][nodes])
@@ -168,26 +84,26 @@ void printGraph(const int input[][nodes])
     cout << "|\n\n";
 }
 
-void printFeaturesBFS(const int feature[3][nodes], const int trees, const int root = 0)
+void printFeaturesBFS(const int feature[2][nodes], const int trees, const int root = 0)
 {
     cout << "\n\nBREADTH First Search\n";
     cout << "\nROOT: " << root << endl;
     cout << "NODE\tLEVEL\tPARENT\n";
 
     for (int i = 0; i < nodes; i++)
-        cout << i << "\t" << feature[1][i] << "\t" << feature[2][i] << endl;
+        cout << i << "\t" << feature[0][i] << "\t" << feature[1][i] << endl;
 
     cout << "\nTrees in forest: " << trees << endl;
 }
 
-void printFeaturesDFS(const int feature[3][nodes], const int trees, const int root = 0)
+void printFeaturesDFS(const int feature[2][nodes], const int trees, const int root = 0)
 {
     cout << "\n\nDEPTH First Search\n";
     cout << "\nROOT: " << root << endl;
-    cout << "NODE\tSTART\tFINISH\tPARENT\n";
+    cout << "NODE\tSTART\tFINISH\n";
 
     for (int i = 0; i < nodes; i++)
-        cout << i << "\t" << feature[1][i] << "\t" << feature[2][i] << "\t" << feature[0][i] << endl;
+        cout << i << "\t" << feature[0][i] << "\t" << feature[1][i] << endl;
 
     cout << "\nTrees in forest: " << trees << endl;
 }

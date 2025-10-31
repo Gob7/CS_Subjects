@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
-#include "printing.h"
+using namespace std;
+
+#include "../printing.h"
 #include "binary_search.h"
 #include "bubble_sort.h"
 #include "selection_sort.h"
@@ -8,9 +10,9 @@
 #include "bup_mergesort.h"
 #include "quick_sort.h"
 #include "heap_sort.h"
-using namespace std;
 
-int main(){
+int main()
+{
     int n, i;
 
     // cout<<"Enter length of array: ";
@@ -20,11 +22,11 @@ int main(){
     // for (i=0;i<n;i++)
     //     cin>>arr[i];
 
-    int arr[] = {5,2,9,3,0,7,6,-5,-8,-1};
+    int arr[] = {5, 2, 9, 3, 0, 7, 6, -5, -8, -1};
     // int arr[] = {0,-1,-2,-3,-4,-5,-6,-7,-8,-9};
-    n = sizeof(arr)/sizeof(int);
+    n = sizeof(arr) / sizeof(int);
 
-    cout<<"\nArray:\t\t";
+    cout << "\nArray:\t\t";
     arrPrint(arr, 0, n);
 
     bubble(arr, 0, n);
@@ -35,7 +37,7 @@ int main(){
     // quick(arr, 0, n);
     // heap(arr, 0, n);
 
-    cout<<"\nSorted array:\t";
+    cout << "\nSorted array:\t";
     arrPrint(arr, 0, n);
 
     // int key, index;
