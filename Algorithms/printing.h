@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct node
+{
+    int value;
+    struct node *next;
+};
+
 template <typename T>
 void arrPrint(T *arr, int start, int end)
 {
@@ -42,4 +48,14 @@ void numPrint(vector<int> vec)
 {
     for (int i = vec.size() - 1; i >= 0; i--)
         cout << vec[i];
+}
+
+void listPrint(node *ptr)
+{
+    while (ptr)
+    {
+        cout << ptr->value << "\t-> ";
+        ptr = ptr->next;
+    }
+    cout << "NULL\n";
 }

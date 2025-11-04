@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int divide(int *arr, int low, int high)
+int quickDivide(int *arr, const int low, const int high)
 {
     int pivot = arr[low], i = low + 1, j = high;
     while (i <= j)
@@ -18,13 +18,12 @@ int divide(int *arr, int low, int high)
     return j;
 }
 
-void quick(int *arr, int start, int end)
+void quickSort(int *arr, const int start, const int end)
 {
-    // arr[end] = INT_MAX;
     if (start < end)
     {
-        int key = divide(arr, start, end - 1);
-        quick(arr, start, key);
-        quick(arr, key + 1, end);
+        int key = quickDivide(arr, start, end - 1);
+        quickSort(arr, start, key);
+        quickSort(arr, key + 1, end);
     }
 }

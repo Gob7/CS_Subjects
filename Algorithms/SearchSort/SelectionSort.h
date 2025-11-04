@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void selection(int *arr, int start, int end)
+void selectionSort(int *arr, const int start, const int end)
 {
     int i, j, key;
     for (i = start; i < end - 1; i++)

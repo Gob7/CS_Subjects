@@ -1,11 +1,13 @@
-// Merge Sort
 #include <bits/stdc++.h>
 using namespace std;
 
-void merging(int *arr, int low, int mid, int high)
+void mergeAlgo(int *arr, const int low, const int mid, const int high)
 {
-    int n1 = mid - low + 1, n2 = high - mid, i, j, k;
+    int i, j, k,
+        n1 = mid - low + 1,
+        n2 = high - mid;
     int a1[n1], a2[n2];
+
     for (i = 0; i < n1; i++)
         a1[i] = arr[low + i];
     for (j = 0; j < n2; j++)
@@ -20,19 +22,20 @@ void merging(int *arr, int low, int mid, int high)
         else
             arr[k++] = a1[i++];
     }
+
     while (i < n1)
         arr[k++] = a1[i++];
     while (j < n2)
         arr[k++] = a2[j++];
 }
 
-void merge(int *arr, int start, int end)
+void mergeSort(int *arr, const int start, const int end)
 {
     if (start < end - 1)
     {
         int mid = (start + end - 1) / 2;
-        merge(arr, start, mid + 1);
-        merge(arr, mid + 1, end);
-        merging(arr, start, mid, end - 1);
+        mergeSort(arr, start, mid + 1);
+        mergeSort(arr, mid + 1, end);
+        mergeAlgo(arr, start, mid, end - 1);
     }
 }

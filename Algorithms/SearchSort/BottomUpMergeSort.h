@@ -1,8 +1,7 @@
-// Bottom-Up Merge Sort
 #include <bits/stdc++.h>
 using namespace std;
 
-void combine(int *arr, int low, int mid, int high)
+void bottomUpMerge(int *arr, const int low, const int mid, const int high)
 {
     int n = high - low + 1, i = 0, j = low, k = mid + 1;
     int a[n];
@@ -22,7 +21,7 @@ void combine(int *arr, int low, int mid, int high)
         arr[low + i] = a[i];
 }
 
-void bupMerge(int *arr, int start, int end)
+void bottomUpMergeSort(int *arr, const int start, const int end)
 {
     int item = 1, n = end - start, low, mid, high;
     while (item <= n)
@@ -35,7 +34,7 @@ void bupMerge(int *arr, int start, int end)
             high = low + 2 * item - 1;
             high = high < end ? high : end - 1;
 
-            combine(arr, low, mid, high);
+            bottomUpMerge(arr, low, mid, high);
             low += 2 * item;
         }
         item *= 2;

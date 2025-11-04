@@ -27,15 +27,17 @@ int main()
     float weightFloat[length] = {4, 3, 2},
           profitFloat[length] = {5, 2, 1};
 
-    // cout << "Number of items & capacity: ";
-    // cin >> length >> capacityFloat;
-    // float weightFloat[length], profitFloat[length];
-    // cout << "Enter weights: ";
-    // for (i = 0; i < length; i++)
-    //     cin >> weightFloat[i];
-    // cout << "Enter profits: ";
-    // for (i = 0; i < length; i++)
-    //     cin >> profitFloat[i];
+    /*
+    cout << "Number of items & capacity: ";
+    cin >> length >> capacityFloat;
+    float weightFloat[length], profitFloat[length];
+    cout << "Enter weights: ";
+    for (i = 0; i < length; i++)
+        cin >> weightFloat[i];
+    cout << "Enter profits: ";
+    for (i = 0; i < length; i++)
+        cin >> profitFloat[i];
+    */
 
     cout << "\nBINARY KNAPSACK:" << endl;
     binaryKnapsack(weightInt, profitInt, length, capacityInt);

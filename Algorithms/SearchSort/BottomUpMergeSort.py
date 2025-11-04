@@ -1,5 +1,4 @@
-#bottom-up merge sorting
-def combine(arr, low, mid, high):
+def bottomUpMerge(arr, low, mid, high):
     n = high - low + 1
     i, j, k = 0, low, mid + 1
     temp = [0] * n
@@ -22,7 +21,8 @@ def combine(arr, low, mid, high):
     for i in range(n):
         arr[low + i] = temp[i]
 
-def bmerge(arr):
+
+def bottomUpMergeSort(arr):
     item = 1
     while item <= len(arr):
         low = 0
@@ -31,19 +31,22 @@ def bmerge(arr):
             mid = mid if mid < len(arr) else len(arr) - 1
             high = low + 2 * item - 1
             high = high if high < len(arr) else len(arr) - 1
-            combine(arr, low, mid, high)
+            bottomUpMerge(arr, low, mid, high)
             low += 2 * item
         item *= 2
 
+
 while True:
     try:
-        l=list(eval(input('\nEnter a list of comparable types: ')))
-        bmerge(l)
-        print('The sorted list is',l)
-        choice=input('\nEnter "n" to end the programme: ')
-        if choice=='n':
+        l = list(eval(input("\nEnter a list of comparable types: ")))
+        bottomUpMergeSort(l)
+        print("The sorted list is", l)
+        choice = input('\nEnter "n" to end the programme: ')
+
+        if choice == "n":
             break
     except:
-        print('You entered something wrong; SORRY.')
+        print("You entered something wrong; SORRY.")
         break
-print('\nThank you!!!')
+
+print("\nThank you!!!")
