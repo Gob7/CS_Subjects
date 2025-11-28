@@ -1,4 +1,4 @@
-// queue using linked list
+// Queue using linked list
 // insert at end and delete from front
 #include <stdio.h>
 #include <stdlib.h>

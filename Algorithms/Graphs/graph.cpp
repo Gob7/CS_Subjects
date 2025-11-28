@@ -5,18 +5,19 @@ using namespace std;
 #include "graphFunction.h"
 #include "BFS.h"
 #include "DFS.h"
-// #include "multiStageGraph.h"
-// #include "floydWarshell.h"
+#include "multiStageGraph.h"
+#include "floydWarshell.h"
 
-void makeGraph(int input[][nodes]);
+void makeDirectedGraph(int input[][nodes]);
 int main()
 {
     int input[nodes][nodes];
     initGraph(input);
-    makeGraph(input);
+    makeDirectedGraph(input);
+    initUndirectedGraph(input);
     printGraph(input);
 
-    /**/
+    /*
     int feature[2][nodes], trees;
 
     // BFS
@@ -28,6 +29,7 @@ int main()
     // feature -> index: property -> 1: start, 2: finish
     trees = DepthFirstSearch(input, feature);
     printFeaturesDFS(feature, trees);
+    */
 
     /*
     // All-Pair Shortest Path
@@ -36,6 +38,7 @@ int main()
     cout << "\nAll pair shortest path:";
     printGraph(output);
     */
+
     /*
     // Multi-Stage Graph
     int minCost, levels = 5;
@@ -50,7 +53,7 @@ int main()
     return 0;
 }
 
-void makeGraph(int input[][nodes])
+void makeDirectedGraph(int input[][nodes])
 {
     /*
     // 4 nodes

@@ -11,7 +11,7 @@ void initGraph(int input[][nodes])
     }
 }
 
-void initMultiStageGraph(int cost[][nodes], int path[][nodes], int levels)
+void initMultiStageGraph(int cost[][nodes], int path[][nodes], const int levels)
 {
     for (int i = 0; i < levels; i++)
     {
@@ -20,7 +20,12 @@ void initMultiStageGraph(int cost[][nodes], int path[][nodes], int levels)
     }
 }
 
-void initUndirectedGraph() {}
+void initUndirectedGraph(int input[][nodes])
+{
+    for (int i = 0; i < nodes; i++)
+        for (int j = i + 1; j < nodes; j++)
+            input[i][j] = input[j][i] = min(input[i][j], input[j][i]);
+}
 
 void copyGraph(const int source[][nodes], int destination[][nodes])
 {

@@ -18,6 +18,7 @@ void insert(int x)
         root = cur;
         return;
     }
+
     // duplicate value not allowed.
     while (ptr->value != cur->value)
     {

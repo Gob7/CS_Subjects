@@ -1,27 +1,39 @@
-/*WAP to calculate simple intrest and compound intrest for given
-principal amount and time period (take rate of intrest yourself).*/
+// Calculate simple interest and compound interest
 #include <bits/stdc++.h>
 using namespace std;
-class check{
-    float p,r,t,si,ci;
-    public:
-    void intrest(float P,float T,float R=17.5){
-        p=P;
-        r=R;
-        t=T;
-        cout<<"\nPrincipal\t: "<<p<<endl;
-        cout<<"Rate of intrest\t: "<<r<<endl;
-        cout<<"Time period\t: "<<t<<endl;
-        si=floor(p*r*t+.5)/100;
-        ci=p*(pow((1+r/100.0),floor(t))-1)+p*r*(t-floor(t))/100.0;
-        ci=floor(ci*100+.5)/100;
-        cout<<"Intrest:\nSimple\t\t= "<<si<<endl;
-        cout<<"Compound\t= "<<ci<<endl;
+
+class interestCalculator
+{
+    float principal, rate, time, simple, compound;
+
+public:
+    void findInterest(float principalAmount, float timePeriod, float rateOfInterest = 17.5)
+    {
+        principal = principalAmount;
+        rate = rateOfInterest;
+        time = timePeriod;
+
+        cout << "\nPrincipal amount\t:\t" << principal << endl;
+        cout << "Rate of interest\t:\t" << rate << endl;
+        cout << "Time period\t\t:\t" << time << endl;
+
+        simple = round(principal * rate * time) / 100;
+        int t = floor(time);
+        float c = principal * (pow((1 + rate / 100.0), t) - 1);
+        float s = principal * rate * (time - t) / 100.0;
+        compound = round((c + s) * 100) / 100;
+
+        cout << "\nSimple interest\t\t=\t" << simple << endl;
+        cout << "Compound interest\t=\t" << compound << "\n\n";
     }
 };
-int main(){
-    check c;
-    c.intrest(500.75,7.5);
-    c.intrest(10000,5,10);
+
+int main()
+{
+    interestCalculator x;
+    x.findInterest(100, 4, 10);
+    x.findInterest(500.75, 7.5);
+    x.findInterest(10000, 5, 10);
+
     return 0;
 }

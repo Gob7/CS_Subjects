@@ -33,5 +33,6 @@ int main()
     int length = sizeof(arr) / sizeof(int);
     cout << "Length of longest contiguous subarray whose sum is " << target << " is "
          << longestContiguousSubarray(arr, length, target) << endl;
+
     return 0;
 }

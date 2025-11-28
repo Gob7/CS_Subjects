@@ -62,7 +62,8 @@ int main()
         exit(0);
     }
 
-    int maximum[n][m], allocate[n][m], need[n][m], total[m], available[m], newAllocate[n][m], newNeed[n][m], newAvailable[m];
+    int maximum[n][m], allocate[n][m], need[n][m], total[m], available[m],
+        newAllocate[n][m], newNeed[n][m], newAvailable[m];
 
     cout << "\nEnter 'maximum' matrix:" << endl;
     for (i = 0; i < n; i++)

@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void decimalToBinary(int n) {
-    if (n < 2){
+void decimalToBinary(int n)
+{
+    if (n < 2)
+    {
         printf("%d", n);
         return;
     }
@@ -11,12 +13,14 @@ void decimalToBinary(int n) {
     printf("%d", n % 2);
 }
 
-void main(){
+void main()
+{
     int n;
     printf("Decimal = ");
     scanf("%d", &n);
 
-    if (n<0){
+    if (n < 0)
+    {
         printf("Enter a whole number\n");
         exit(0);
     }

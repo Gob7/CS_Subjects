@@ -1,53 +1,71 @@
-//WAP to convert temperature
-#include <iostream>
+// Converting temperature
+// temperature[3] -> 0: celsius, 1: fahrenheit, 2: kelvin
+#include <bits/stdc++.h>
 using namespace std;
-class temp{
-    public:
-    void cel(double a[3]);
-    void far(double a[3]);
-    void kel(double a[3]);
+
+class convertTemperature
+{
+public:
+    void celsius(double temperature[3]);
+    void fahrenheit(double temperature[3]);
+    void kelvin(double temperature[3]);
 };
-void temp::cel(double a[3]){
-    cout<<"\nCelcius: ";
-    cin>>a[0];
-    a[1]=(a[0]*9/5.0)+32;
-    a[2]=a[0]+273.15;
+
+void convertTemperature::celsius(double temperature[3])
+{
+    cout << "\nCelsius: ";
+    cin >> temperature[0];
+    temperature[1] = (temperature[0] * 9 / 5.0) + 32;
+    temperature[2] = temperature[0] + 273.15;
 }
-void temp::far(double a[3]){
-    cout<<"\nFarenheit: ";
-    cin>>a[1];
-    a[0]=(a[1]-32)*5/9.0;
-    a[2]=a[0]+273.15;
+
+void convertTemperature::fahrenheit(double temperature[3])
+{
+    cout << "\nFahrenheit: ";
+    cin >> temperature[1];
+    temperature[0] = (temperature[1] - 32) * 5 / 9.0;
+    temperature[2] = temperature[0] + 273.15;
 }
-void temp::kel(double a[3]){
-    cout<<"\nKelvin: ";
-    cin>>a[2];
-    a[0]=a[2]-273.15;
-    a[1]=(a[0]*9/5.0)+32;
+
+void convertTemperature::kelvin(double temperature[3])
+{
+    cout << "\nKelvin: ";
+    cin >> temperature[2];
+    temperature[0] = temperature[2] - 273.15;
+    temperature[1] = (temperature[0] * 9 / 5.0) + 32;
 }
-int main(){
-    temp t;
-    int x,f=1;
-    double a[3];
-    cout<<"\nPress\tFor\n1.\tCelcius\n2.\tFarenheit\n3.\tKelvin\n";
-    cin>>x;
-    switch(x){
-        case 1:
-        t.cel(a);
+
+int main()
+{
+    convertTemperature x;
+    int choice, flag = 1;
+    double temperature[3];
+
+    cout << "\nPress\tFor\n1.\tCelsius\n2.\tFahrenheit\n3.\tKelvin\n\nPressed : ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        x.celsius(temperature);
         break;
-        case 2:
-        t.far(a);
+    case 2:
+        x.fahrenheit(temperature);
         break;
-        case 3:
-        t.kel(a);
+    case 3:
+        x.kelvin(temperature);
         break;
-        default:
-        f=0;
-        cout<<"\nWrong choice";
+    default:
+        flag = 0;
+        cout << "\nWrong choice.";
     }
-    if (f && a[2]>=0)
-    cout<<"\nCelcius \t= "<<a[0]<<"\nFarenheit \t= "<<a[1]<<"\nKelvin \t\t= "<<a[2];
-    else if(f && a[2]<0)
-    cout<<"Such temperature doesn't exist.";
+
+    if (flag && temperature[2] >= 0)
+        cout << "\nCelsius\t\t=\t" << temperature[0]
+             << "\nFahrenheit\t=\t" << temperature[1]
+             << "\nKelvin\t\t=\t" << temperature[2];
+
+    else if (flag && temperature[2] < 0)
+        cout << "Such temperature doesn't exist.";
+
     return 0;
 }
