@@ -1,4 +1,4 @@
-## COMPUTER SCIENCE SUBJECTS
+# COMPUTER SCIENCE SUBJECTS
 
 B. Tech.
 
@@ -6,7 +6,7 @@ Computer Science & Engineering
 
 Relevant Subjects and their respective codes
 
-# Attention required at:
+### Attention required at:
 
 Theory of Computation (all)
 
