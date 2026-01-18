@@ -6,7 +6,7 @@ Computer Science & Engineering
 
 Relevant Subjects and their respective codes
 
-### Attention required at:
+## Attention required at:
 
 Theory of Computation (all)
 
@@ -17,6 +17,5 @@ Machine Learning (all; break into functions)
 Computer Graphics (all)
 
 Algorithms (MatrixLongInt + additional)
-
 
 Windows: Shift + Alt + F

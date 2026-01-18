@@ -1,85 +1,129 @@
-print("NFA to DFA conversion: \n")
-print("States: 0(initial), 1, 2 ...")
-print("Inputs: 0, 1, 2 ...")
-print("Limitation: can take a maximum of  states and inputs")
-print("-1 means dead state")
-print("Enter without spaces")
+def printMessage():
+    print("\nConverting NFA to DFA")
+    print("------------------------\n")
+    print("States\t\t:\t0(initial), 1, 2...")
+    print("Inputs\t\t:\t0, 1, 2...")
+    print("Limitation\t:\tMax 10 states.")
+    print("Note\t\t:\t-1 is dead state.")
+    print("Suggestion\t:\tEnter without spaces.")
 
-while True:
-    print("\nEnter details of NFA")
-    state, inp = eval(input("Enter number of states and inputs: "))
-    nfa = []
-    print("State Input\tOutput")
-    for i in range(state):
-        x = []
-        for j in range(inp):
-            print(i, "\t", j, ":\t", end="")
-            x.append(input())
-        nfa.append(x)
-    fin = input("Final states: ")
 
-    print("\n\n")
-    for i in range(-1, state):
-        for j in range(-1, inp):
+def takeInput():
+    print("\nNFA DETAILS")
+    stateSymbolsNFA, inputSymbols = eval(input("Enter #states & #inputs: "))
+
+    # transition table indexed as nfa[state][input]
+    transitionsNFA = []
+
+    print("\nEnter transitions\nState\t\tInput\t\tOutput")
+    print("-----------------------------------------------")
+    for i in range(stateSymbolsNFA):
+
+        tempTransition = []
+        for j in range(inputSymbols):
+
+            print(i, "\t->\t", j, "\t:\t", end="")
+            s = input()
+            tempTransition.append("".join(sorted(set(s))))
+
+        transitionsNFA.append(tempTransition)
+
+    finalStatesNFA = input("\nFinal states: ")
+    return stateSymbolsNFA, inputSymbols, transitionsNFA, finalStatesNFA
+
+
+def printNFA(stateSymbolsNFA, inputSymbols, transitionsNFA, finalStatesNFA):
+
+    for i in range(-1, stateSymbolsNFA):
+        for j in range(-1, inputSymbols):
+
             if i == -1 and j == -1:
                 print("NFA", end="\t")
-                continue
-            if i == -1 or j == -1:
+            elif i == -1 or j == -1:
                 print(i + j + 1, end="\t")
-                continue
-            print(nfa[i][j], end="\t")
-        print()
-    print("Final states:", fin)
+            else:
+                print(transitionsNFA[i][j], end="\t")
 
-    dfa = []
-    dfa_s = []
-    f = []
-    sta = "0"
-    p1 = 0
-    p2 = -1
-    while True:
-        if sta not in dfa_s:
-            x = [""] * inp
-            for i in sta:
-                for j in range(inp):
-                    l = nfa[int(i)][j]
-                    for k in l:
-                        if k not in x[j]:
-                            x[j] += k
-            dfa_s.append(sta)
-            for i in range(inp):
-                l = list(x[i])
-                l.sort()
-                x[i] = ""
-                x[i] = x[i].join(l)
-            dfa.append(x)
-            for i in fin:
-                if i in sta:
-                    f.append(sta)
-                    break
-        p2 += 1
-        if p2 == inp:
-            p2 = 0
-            p1 += 1
-        sta = dfa[p1][p2]
-        if len(dfa) * inp == (p1 + 1) * (p2 + 1) and sta in dfa_s:
-            break
-    print("\n\n")
-    for i in range(-1, len(dfa_s)):
-        for j in range(-1, inp):
+        print()
+    print("\nFinal states:", finalStatesNFA)
+
+
+def printDFA(stateSymbolsDFA, inputSymbols, transitionsDFA, finalStatesDFA):
+
+    for i in range(len(stateSymbolsDFA)):
+        if stateSymbolsDFA[i] == "":
+            stateSymbolsDFA[i] = "-1"
+        for j in range(inputSymbols):
+            if transitionsDFA[i][j] == "":
+                transitionsDFA[i][j] = "-1"
+
+    for i in range(-1, len(stateSymbolsDFA)):
+        for j in range(-1, inputSymbols):
+
             if i == -1 and j == -1:
                 print("DFA", end="\t")
-                continue
-            if i == -1:
+            elif i == -1:
                 print(j, end="\t")
-                continue
-            if j == -1:
-                if dfa_s[i] == "":
-                    dfa_s[i] = "-1"
-                print(dfa_s[i], end="\t")
+            elif j == -1:
+                print(stateSymbolsDFA[i], end="\t")
             else:
-                if dfa[i][j] == "":
-                    dfa[i][j] = "-1"
-                print(dfa[i][j], end="\t")
+                print(transitionsDFA[i][j], end="\t")
+
         print()
-    print("Final states:", f)
+    print("\nFinal states:", finalStatesDFA)
+
+
+def convertNFAtoDFA(inputSymbols, transitionsNFA, finalStatesNFA):
+    stateSymbolsDFA = []
+    finalStatesDFA = []
+    currentState = "0"
+    # transition table indexed as dfa[state][input]
+    transitionsDFA = []
+
+    stateIndex = 0
+    inputIndex = -1
+    while True:
+        if currentState not in stateSymbolsDFA:
+
+            stateSymbolsDFA.append(currentState)
+            tempTransition = [""] * inputSymbols
+
+            for i in currentState:
+                for j in range(inputSymbols):
+                    tempTransition[j] += transitionsNFA[int(i)][j]
+                    tempTransition[j] = "".join(sorted(set(tempTransition[j])))
+
+            transitionsDFA.append(tempTransition)
+            for i in finalStatesNFA:
+                if i in currentState:
+                    finalStatesDFA.append(currentState)
+                    break
+
+        inputIndex += 1
+        if inputIndex == inputSymbols:
+            inputIndex = 0
+            stateIndex += 1
+        currentState = transitionsDFA[stateIndex][inputIndex]
+
+        if currentState in stateSymbolsDFA and (
+            len(transitionsDFA) * inputSymbols == (stateIndex + 1) * (inputIndex + 1)
+        ):
+            return stateSymbolsDFA, transitionsDFA, finalStatesDFA
+
+
+def main():
+    printMessage()
+    stateSymbolsNFA, inputSymbols, transitionsNFA, finalStatesNFA = takeInput()
+
+    print("\n")
+    printNFA(stateSymbolsNFA, inputSymbols, transitionsNFA, finalStatesNFA)
+
+    stateSymbolsDFA, transitionsDFA, finalStatesDFA = convertNFAtoDFA(
+        inputSymbols, transitionsNFA, finalStatesNFA
+    )
+
+    print("\n")
+    printDFA(stateSymbolsDFA, inputSymbols, transitionsDFA, finalStatesDFA)
+
+
+main()

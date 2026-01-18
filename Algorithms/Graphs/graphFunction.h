@@ -89,6 +89,17 @@ void printGraph(const int input[][nodes])
     cout << "|\n\n";
 }
 
+void printDistance(const int output[2][nodes], const int source = 0)
+{
+    cout << "\nDistance measured from node:\n'"
+         << source << "'\t(Parent)\tTo\t\tDistance\n";
+
+    for (int i = 0; i < nodes; i++)
+        cout << "\t(" << output[0][i] << ")\t\t" << i << "\t=\t" << output[1][i] << endl;
+
+    cout << endl;
+}
+
 void printFeaturesBFS(const int feature[2][nodes], const int trees, const int root = 0)
 {
     cout << "\n\nBREADTH First Search\n";
