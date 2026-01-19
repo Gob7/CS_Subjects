@@ -8,14 +8,12 @@ Relevant Subjects and their respective codes
 
 ## Attention required at:
 
-Theory of Computation (all)
+Theory of Computation (nfa_to_dfa, turing)
 
-Problem (modifiedFibonacci, practice)
+Problem (modifiedFibonacci)
 
-Machine Learning (all; break into functions)
+Computer Graphics (BresenhamLine)
 
-Computer Graphics (all)
+Algorithms (Graphs, MatrixLongInt, Other)
 
-Algorithms (MatrixLongInt + additional)
-
-Windows: Shift + Alt + F
+### Windows: Shift + Alt + F

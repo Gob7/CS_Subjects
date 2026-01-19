@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-void operatorUnderstand(){
-    
+void operatorUnderstand()
+{
     int x = INT_MIN;
     printf("Number Play\n\n");
     printf("%d\n", x - 1);
     printf("x = %d\n", x);
-    printf("%d\n", x + 1); 
+    printf("%d\n", x + 1);
     printf("\nleft shift\n");
     printf("%d\n", x << 1);
     printf("%d\n", x << 2);
@@ -18,7 +18,8 @@ void operatorUnderstand(){
     printf("%d\n", x >> 2);
 }
 
-void switchCase(){
+void switchCase()
+{
     // int a = 0 ? 0/0 : -1;
     // printf("a = %d\n", a);
 
@@ -27,21 +28,22 @@ void switchCase(){
 
     int y = 2;
     char x = 'A';
-    switch (x+2) {
-        default:
-            printf("x = default\n");
-            break;
-        case 65:
-            printf("x = A\n");
-            break;
-        case 'C':
-            printf("x = 67\n");
-            break;
+    switch (x + 2)
+    {
+    default:
+        printf("x = default\n");
+        break;
+    case 65:
+        printf("x = A\n");
+        break;
+    case 'C':
+        printf("x = 67\n");
+        break;
     }
-
 }
 
-void loopPlay(){
+void loopPlay()
+{
     int i = 6;
     // for (printf("Meow\n");
     //     printf("\tHi %d", i) < printf(" < 10\n");
@@ -52,23 +54,26 @@ void loopPlay(){
     //     }
     // printf("Outside for loop\n\n");
 
-    for(printf("Meow\n"), i = 0, i=5; i < 10 && printf("\tcondition\t"); i++, printf("Let's go again\n")){
+    for (printf("Meow\n"), i = 0, i = 5; i < 10 && printf("\tcondition\t"); i++, printf("Let's go again\n"))
+    {
         printf("Inside for loop\n\n");
     }
 }
 
-void arrayPlay(){
+void arrayPlay()
+{
 
     // int a = 100, x;
     // char b = 90, y;
-    // x = a + b; 
+    // x = a + b;
     // y = a + b;
     // printf("x: %d, y: %d\n", x, y);
 
     int arr[4] = {1, 7};
     printf("\nSize of arr: %d\n", sizeof(arr));
     printf("Hexadecimal\t\tDecimal\t\tValue\n");
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         printf("%p\t->\t%u\t->\t%d\n", &arr[i], &arr[i], arr[i]);
     }
     // int (*p1)[4] = &arr;
@@ -79,16 +84,17 @@ void arrayPlay(){
     // printf("Pointer p1+2\t: %p -> %d\n", p1 + 2, *(p1 + 2));
     printf("\nPointer p2\t: %p -> %d\n", p2, *p2);
     printf("Pointer p2+1\t: %p -> %d\n", p2 + 1, *(p2 + 1));
-    printf("Pointer p2+2\t: %p -> %d\n", p2 + 2, *(p2 + 2)); 
+    printf("Pointer p2+2\t: %p -> %d\n", p2 + 2, *(p2 + 2));
     printf("\nAddress &arr\t: %p -> %u\n", &arr, &arr);
     printf("Address &arr+1\t: %p -> %u\n", &arr + 1, &arr + 1);
     printf("Address &arr+2\t: %p -> %u\n", &arr + 2, &arr + 2);
-    
 }
 
-void arrayPointer(){
-    int i, a[] = {1,2,3,4};
-    for (i = 0; i < 4; i++) {
+void arrayPointer()
+{
+    int i, a[] = {1, 2, 3, 4};
+    for (i = 0; i < 4; i++)
+    {
         printf("%d ", a[i]);
     }
     printf("\n\n");
@@ -99,12 +105,14 @@ void arrayPointer(){
     p[-1] = -10;
     a[3] = 0;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++)
+    {
         printf("%d ", a[i]);
     }
 }
 
-int *return_pointer() {
+int *return_pointer()
+{
     int a = 10;
     int *p = &a;
 
@@ -112,10 +120,11 @@ int *return_pointer() {
     return p;
 }
 
-void pointerPlay(){
+void pointerPlay()
+{
     // int *ptr;
     // ptr = return_pointer();
-    // printf("Outside function: %d\n", *ptr+1); 
+    // printf("Outside function: %d\n", *ptr+1);
 
     int *p, a;
     char *q, b;
@@ -134,15 +143,16 @@ void pointerPlay(){
     a = 1000;
     p = &a;
     printf("p = %p -> %d\n", p, *p);
-    printf("p+1 = %p -> %d\n", p+1, *(p+1));
+    printf("p+1 = %p -> %d\n", p + 1, *(p + 1));
     q = &a;
     printf("\nq = %p -> %d\n", q, *q);
-    printf("q+1 = %p -> %d\n", q+1, *(q+1));
-    printf("q+2 = %p -> %d\n", q+2, *(q+2));
-    printf("q+3 = %p -> %d\n", q+3, *(q+3));
+    printf("q+1 = %p -> %d\n", q + 1, *(q + 1));
+    printf("q+2 = %p -> %d\n", q + 2, *(q + 2));
+    printf("q+3 = %p -> %d\n", q + 3, *(q + 3));
 }
 
-void stringPlay(){
+void stringPlay()
+{
     char name[] = "Nigga";
     int x = sizeof(name);
     // printf("Size of name: %d\n", x);
@@ -175,17 +185,20 @@ void stringPlay(){
     // printf("%p -> %c\n", &"Hello"[7], "Hello"[7]);
 }
 
-union unionA {
+union unionA
+{
     int a;
     char b;
 };
 
-struct structA {
+struct structA
+{
     int a;
     char b;
 };
 
-void structureUnionPlay(){
+void structureUnionPlay()
+{
     union unionA u;
     struct structA s;
 
