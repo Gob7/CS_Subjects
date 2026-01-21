@@ -8,17 +8,19 @@ void digitalDifferentialAnalyzer(const int x0, const int y0, const int x1, const
     const int step = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
     if (!step)
     {
-        cout << x0 << ", " << y0 << endl;
+        cout << endl
+             << x0 << ", " << y0 << endl;
         return;
     }
-    const float xi = (float)dx / step, yi = (float)dy / step;
 
-    cout << endl;
-    for (int i = 0; i <= step; i++)
+    const float xi = (float)dx / step, yi = (float)dy / step;
+    cout << endl
+         << round(x) << ", " << round(y) << endl;
+    for (int i = 0; i < step; i++)
     {
-        cout << round(x) << ", " << round(y) << endl;
         x += xi;
         y += yi;
+        cout << round(x) << ", " << round(y) << endl;
     }
     cout << endl;
 }

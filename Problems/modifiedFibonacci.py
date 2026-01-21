@@ -1,68 +1,47 @@
 # Fibonacci series (Indian Series)
-while True:
+print("Fibonacci series (Indian Series)")
+print("--------------------------------\n")
+fibonacciArray = [0, 1]
+
+
+def fibonacciBottomUp(arr, term=2, printRequired=0):
+    if term < 1:
+        return
+
+    arrLength = len(arr)
+    if term > arrLength:
+        for i in range(arrLength, term):
+            arr.append(arr[i - 2] + arr[i - 1])
+
+    if printRequired:
+        print("Series goes like...")
+        for i in range(term):
+            print("\t\t", arr[i])
+
+    return arr[term - 1]
+
+
+def main():
     try:
-        w = input(
-            '\nPress\t>> "0" for Fibonacci series starting from 0,\n\t>> "1" for Fibonacci series starting from 1,\n\t>> <any key*> for Fibonacci series starting from your choice: '
-        )
-        c = int(eval(input("\nEnter total number of terms: ")))
+        custom = input("\nPress '0' for custom start\t: ")
+        term = int(eval(input("Enter total number of terms\t: ")))
         print()
-        if c == 0:
-            print("Fibonacci series for the given inputs is the following:\n")
-        elif w == "0":
-            if c == 1:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", 0)
-            elif c == 2:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", 0, "\n\t", 1, sep="")
-            else:
-                a = 0
-                b = 1
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", 0, "\n\t", 1, sep="")
-                for i in range(0, c - 2):
-                    f = a + b
-                    a = b
-                    b = f
-                    print("\t", f, sep="")
-        elif w == "1":
-            if c == 1:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", 1)
-            elif c == 2:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", 1, "\n\t", 1, sep="")
-            else:
-                a = 1
-                b = 1
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", 1, "\n\t", 1, sep="")
-                for i in range(0, c - 2):
-                    f = a + b
-                    a = b
-                    b = f
-                    print("\t", f, sep="")
+
+        if custom == "0":
+            n1 = complex(eval(input("First number\t: ")))
+            n2 = complex(eval(input("Second number\t: ")))
+            arr = [n1, n2]
+            ans = fibonacciBottomUp(arr, term, 1)
         else:
-            a = complex(eval(input("Enter the first number: ")))
-            b = complex(eval(input("Enter the second number: ")))
-            print()
-            if c == 1:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", a)
-            elif c == 2:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", a, "\n\t", b, sep="")
-            else:
-                print("Fibonacci series for the given inputs is the following:\n")
-                print("\t", a, "\n\t", b, sep="")
-                for i in range(0, c - 2):
-                    f = a + b
-                    a = b
-                    b = f
-                    print("\t", f, sep="")
+            ans = fibonacciBottomUp(fibonacciArray, term, 1)
+
+        print("\n(", term, " th) term is ", ans, sep="")
     except:
-        print("You entered something wrong; SORRY.")
-    choice = input('\nEnter "n" to end the programme: ')
-    if choice == "n":
+        print("Wrong input given, try again!")
+
+
+while True:
+    main()
+    repeat = input("\n\nPress '1' to repeat: ")
+    if repeat != "1":
         break
-print("\nThank You!!!")

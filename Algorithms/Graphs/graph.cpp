@@ -30,19 +30,22 @@ int main()
     printFeaturesDFS(feature, trees);
     */
     /*
-    int cycle, allPair[nodes][nodes], singleSource1[2][nodes], singleSource2[2][nodes];
+    int negCycle, allPair[nodes][nodes], singleSource1[2][nodes], singleSource2[2][nodes];
 
     floydWarshellDistance(input, allPair);
     cout << "\nAll pair shortest path (Floyd-Warshell):";
     printGraph(allPair);
 
+    // output[0][v]: parent of node "v"
+    // output[1][v]: shortest distance to node "v"
+
     dijkstraDistance(input, singleSource1);
     cout << "\nSingle source shortest path (Dijkstra):";
     printDistance(singleSource1);
 
-    cycle = bellmanFordDistance(input, singleSource2);
+    negCycle = bellmanFordDistance(input, singleSource2);
     cout << "\nSingle source shortest path (Bellman-Ford):";
-    if (cycle)
+    if (negCycle)
         cout << "\t\t(Negative weight cycle present in graph)";
     printDistance(singleSource2);
     */

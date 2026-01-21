@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int main()
 {
     cout << "sta: 0(initial), 1, 2 ... 9(max limit)\n";

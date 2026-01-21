@@ -24,8 +24,10 @@ void floydWarshellDistance(const int input[][nodes], int output[][nodes])
     }
 }
 
-// output[0][v]: parent of node "v"
-// output[1][v]: shortest distance to node "v"
+/*
+output[0][v]: parent of node "v"
+output[1][v]: shortest distance to node "v"
+*/
 void RELAX(const int input[][nodes], int output[2][nodes], const int uNode, const int vNode)
 {
     // cout << "\nRELAX called for: u = " << uNode << ", v = " << vNode;
