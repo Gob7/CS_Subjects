@@ -10,7 +10,7 @@ struct node
 int traverse()
 {
     struct node *ptr = head;
-    printf("\nLinked List:\n");
+    printf("Linked List\t\t:\t");
     int x = 0;
     while (ptr)
     {
@@ -30,28 +30,61 @@ void traverseBack(struct node *ptr)
     printf("%d, ", ptr->data);
 }
 
-void insertStart(int key)
+void reverse()
+{
+    struct node *pre = NULL, *cur = head, *post;
+    while (cur)
+    {
+        post = cur->next;
+        cur->next = pre;
+        pre = cur;
+        cur = post;
+    }
+    head = pre;
+    printf("Reverse of ");
+    traverse();
+}
+
+void reverseRecursion(struct node *ptr)
+{
+    struct node *cur = ptr;
+    if (!head)
+        return;
+    if (ptr->next)
+    {
+        ptr = ptr->next;
+        reverseRecursion(ptr);
+        ptr->next = cur;
+    }
+    else
+    {
+        head->next = NULL;
+        head = ptr;
+    }
+}
+
+void insertAtStart(int key)
 {
     struct node *cur = (struct node *)malloc(sizeof(struct node));
     if (!cur)
     {
-        printf("\t\t\tSpace not available.\n");
+        printf("\t\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
     cur->next = head;
     head = cur;
-    printf("\n%d is inserted at head.\n", head->data);
+    printf("%d inserted at head.\n", head->data);
 }
 
-void insertEnd(int key)
+void insertAtEnd(int key)
 {
     struct node *ptr, *cur;
     ptr = head;
     cur = (struct node *)malloc(sizeof(struct node));
     if (!cur)
     {
-        printf("\t\t\tSpace not available.\n");
+        printf("\t\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -59,41 +92,41 @@ void insertEnd(int key)
     if (!head)
     {
         head = cur;
-        printf("\n%d is inserted at tail.\n", head->data);
+        printf("%d inserted at tail.\n", head->data);
         return;
     }
     while (ptr->next)
         ptr = ptr->next;
     ptr->next = cur;
-    printf("\n%d is inserted at tail.\n", ptr->next->data);
+    printf("%d inserted at tail.\n", ptr->next->data);
 }
 
-void insertAtStart(int key, int index)
+void insertFromStart(int key, int index)
 {
     struct node *cur, *ptr;
     int size, i;
     size = traverse();
     if (index <= 0)
     {
-        printf("\t\t\tWrong input.\n");
+        printf("\t\t\tWrong input\n");
         return;
     }
     if (index > size)
     {
-        printf("Index is greater than list size; inserting at tail.\n");
-        insertEnd(key);
+        printf("index > list size; Inserting at tail.\n");
+        insertAtEnd(key);
         return;
     }
     if (index == 1)
     {
-        insertStart(key);
+        insertAtStart(key);
         return;
     }
     ptr = head;
     cur = (struct node *)malloc(sizeof(struct node));
     if (!cur)
     {
-        printf("\t\t\tSpace not available.\n");
+        printf("\t\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -101,35 +134,35 @@ void insertAtStart(int key, int index)
         ptr = ptr->next;
     cur->next = ptr->next;
     ptr->next = cur;
-    printf("%d is inserted at index %d from head.\n", ptr->next->data, index);
+    printf("%d inserted at index %d from head.\n", ptr->next->data, index);
 }
 
-void insertAtEnd(int key, int index)
+void insertFromEnd(int key, int index)
 {
     struct node *cur, *ptr, *temp;
     int size, i;
     size = traverse();
     if (index <= 0)
     {
-        printf("\t\t\tWrong input.\n");
+        printf("\t\t\tWrong input\n");
         return;
     }
     if (index > size)
     {
-        printf("Index is greater than list size; inserting at head.\n");
-        insertStart(key);
+        printf("index > list size; Inserting at head.\n");
+        insertAtStart(key);
         return;
     }
     if (index == 1)
     {
-        insertEnd(key);
+        insertAtEnd(key);
         return;
     }
     ptr = temp = head;
     cur = (struct node *)malloc(sizeof(struct node));
     if (!cur)
     {
-        printf("\t\t\tSpace not available.\n");
+        printf("\t\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -142,40 +175,40 @@ void insertAtEnd(int key, int index)
     }
     cur->next = ptr->next;
     ptr->next = cur;
-    printf("%d is inserted at index %d from tail.\n", ptr->next->data, index);
+    printf("%d inserted at index %d from tail.\n", ptr->next->data, index);
 }
 
-void deleteStart()
+void deleteAtStart()
 {
     struct node *ptr = head;
     if (!head)
     {
-        printf("\t\t\tWrong input.\n");
+        printf("\t\t\tWrong input\n");
         return;
     }
     head = ptr->next;
-    printf("\n%d is deleted from head.\n", ptr->data);
+    printf("%d deleted from head.\n", ptr->data);
     free(ptr);
 }
 
-void deleteEnd()
+void deleteAtEnd()
 {
     struct node *ptr = head;
     if (!ptr)
     {
-        printf("\t\t\tWrong input.\n");
+        printf("\t\t\tWrong input\n");
         return;
     }
     if (!ptr->next)
     {
         head = NULL;
-        printf("\n%d is deleted from tail.\n", ptr->data);
+        printf("%d deleted from tail.\n", ptr->data);
         free(ptr);
         return;
     }
     while (ptr->next->next)
         ptr = ptr->next;
-    printf("\n%d is deleted from tail.\n", ptr->next->data);
+    printf("%d deleted from tail.\n", ptr->next->data);
     free(ptr->next);
     ptr->next = NULL;
 }
@@ -187,13 +220,13 @@ void deleteFromStart(int index)
     size = traverse();
     if (size == 0 || index <= 0 || index > size)
     {
-        printf("\t\t\tWrong input.\n");
+        printf("\t\t\tWrong input\n");
         return;
     }
     if (index == 1)
     {
         head = head->next;
-        printf("%d is deleted from head at index %d.\n", cur->data, index);
+        printf("%d deleted at index %d from head.\n", cur->data, index);
         free(cur);
         return;
     }
@@ -201,7 +234,7 @@ void deleteFromStart(int index)
         cur = cur->next;
     ptr = cur->next;
     cur->next = ptr->next;
-    printf("%d is deleted from head at index %d.\n", ptr->data, index);
+    printf("%d deleted at index %d from head.\n", ptr->data, index);
     free(ptr);
 }
 
@@ -212,7 +245,7 @@ void deleteFromEnd(int index)
     size = traverse();
     if (size == 0 || index <= 0 || index > size)
     {
-        printf("\t\t\tWrong input.\n");
+        printf("\t\t\tWrong input\n");
         return;
     }
     for (i = 0; i < index; i++)
@@ -220,7 +253,7 @@ void deleteFromEnd(int index)
     if (!ptr)
     {
         head = head->next;
-        printf("%d is deleted from tail at index %d.\n", cur->data, index);
+        printf("%d deleted at index %d from tail.\n", cur->data, index);
         free(cur);
         return;
     }
@@ -231,7 +264,7 @@ void deleteFromEnd(int index)
     }
     ptr = cur->next;
     cur->next = ptr->next;
-    printf("%d is deleted from tail at index %d.\n", ptr->data, index);
+    printf("%d deleted at index %d from tail.\n", ptr->data, index);
     free(ptr);
 }
 
@@ -245,9 +278,9 @@ void searchNode(int key)
         index++;
     }
     if (ptr)
-        printf("\n%d is present at index %d from head.\n", key, index);
+        printf("%d present at index %d from head.\n", key, index);
     else
-        printf("\n%d is absent in linked list.\n", key);
+        printf("%d absent in linked list.\n", key);
 }
 
 void lastNode()
@@ -255,12 +288,12 @@ void lastNode()
     struct node *ptr = head;
     if (!ptr)
     {
-        printf("\nLast node does not exist.\n");
+        printf("Last node doesn't exist.\n");
         return;
     }
     while (ptr->next)
         ptr = ptr->next;
-    printf("\nLast node of linked list\t\t:\t%d\n", ptr->data);
+    printf("Last node\t\t:\t%d\n", ptr->data);
 }
 
 void secondLastNode()
@@ -268,18 +301,18 @@ void secondLastNode()
     struct node *ptr = head;
     if (!ptr || !ptr->next)
     {
-        printf("\nSecond last node does not exist.\n");
+        printf("Second last node doesn't exist.\n");
         return;
     }
     while (ptr->next->next)
         ptr = ptr->next;
-    printf("\nSecond last node of linked list\t:\t%d\n", ptr->data);
+    printf("Second last node\t:\t%d\n", ptr->data);
 }
 
 void alternateNode()
 {
     struct node *ptr = head;
-    printf("\nAlternate elements\t\t\t:\t");
+    printf("Alternate nodes\t\t:\t");
     while (ptr && ptr->next)
     {
         printf("%d, ", ptr->data);
@@ -288,24 +321,6 @@ void alternateNode()
     if (ptr)
         printf("%d, ", ptr->data);
     printf("\n");
-}
-
-void reverseList(struct node *ptr)
-{
-    struct node *cur = ptr;
-    if (!head)
-        return;
-    if (ptr->next)
-    {
-        ptr = ptr->next;
-        reverseList(ptr);
-        ptr->next = cur;
-    }
-    else
-    {
-        head->next = NULL;
-        head = ptr;
-    }
 }
 
 void checkPalindrome()
@@ -327,13 +342,13 @@ void checkPalindrome()
     {
         if (ptr->data != cur->data)
         {
-            printf("\nLinked List is not a palindrome.\n");
+            printf("Not a palindrome.\n");
             return;
         }
         ptr = ptr->next;
         cur = cur->next;
     }
-    printf("\nLinked List is a palindrome!\n");
+    printf("Yes, a palindrome!\n");
 }
 
 int checkCycle()
@@ -347,11 +362,11 @@ int checkCycle()
 
         if (slow == fast)
         {
-            printf("\nCycle exists in the list.\n");
+            printf("Cycle exists.\n");
             return 1;
         }
     }
-    printf("\nNo cycle in the list.\n");
+    printf("No cycle.\n");
     return 0;
 }
 
@@ -361,12 +376,12 @@ void makeCycle()
     cur = (struct node *)malloc(sizeof(struct node));
     if (!cur && !ptr)
     {
-        printf("\nCannot make cycle.\n");
+        printf("Can't make cycle.\n");
         return;
     }
     cur->data = -1;
     cur->next = head;
-    printf("\n%d inserted at head.\n", cur->data);
+    printf("%d inserted at head.\n", cur->data);
     printf("%d -> ", cur->data);
     if (head)
     {
@@ -400,15 +415,15 @@ void cleanList()
         ptr->next = NULL;
     }
     while (head)
-        deleteStart();
+        deleteAtStart();
 }
 
 void main()
 {
     int size, key;
 
-    insertAtStart(100, 0);
-    insertAtEnd(100, 0);
+    insertFromStart(100, 0);
+    insertFromEnd(100, 0);
     deleteFromStart(0);
     deleteFromEnd(0);
     deleteFromStart(1);
@@ -418,44 +433,45 @@ void main()
     secondLastNode();
     lastNode();
     alternateNode();
-    reverseList(head);
+    reverse();
+    reverseRecursion(head);
 
     size = traverse();
-    printf("Size = %d\n", size);
-    printf("\nEnter element to search\t\t\t:\t");
+    printf("Size\t\t\t=\t%d\n", size);
+    printf("To search\t\t:\t");
     scanf("%d", &key);
     searchNode(key);
 
-    insertAtEnd(15, 1);
-    insertAtStart(25, 1);
-    insertAtStart(35, 1);
-    insertAtEnd(45, 1);
-    insertEnd(10);
-    insertStart(20);
+    insertFromEnd(15, 1);
+    insertFromStart(25, 1);
+    insertFromStart(35, 1);
+    insertFromEnd(45, 1);
+    insertAtEnd(10);
+    insertAtStart(20);
 
     deleteFromStart(1);
     deleteFromEnd(1);
-    deleteStart();
-    deleteEnd();
+    deleteAtStart();
+    deleteAtEnd();
 
-    insertStart(30);
-    insertStart(40);
-    insertEnd(50);
-    insertEnd(60);
+    insertAtStart(30);
+    insertAtStart(40);
+    insertAtEnd(50);
+    insertAtEnd(60);
 
-    insertAtStart(55, 2);
+    insertFromStart(55, 2);
     size = traverse();
-    insertAtStart(65, size);
-    insertAtStart(70, 100);
+    insertFromStart(65, size);
+    insertFromStart(70, 100);
 
-    insertAtEnd(75, 2);
+    insertFromEnd(75, 2);
     size = traverse();
-    insertAtEnd(85, size);
-    insertAtEnd(80, 100);
+    insertFromEnd(85, size);
+    insertFromEnd(80, 100);
 
     size = traverse();
-    printf("Size = %d\n", size);
-    printf("\nEnter element to search\t\t\t:\t");
+    printf("Size\t\t\t=\t%d\n", size);
+    printf("To search\t\t:\t");
     scanf("%d", &key);
     searchNode(key);
 
@@ -465,15 +481,15 @@ void main()
     lastNode();
     alternateNode();
 
-    printf("\nReverse of Linked List\t\t\t:\t");
+    printf("Reverse of Linked List\t\t:\t");
     traverseBack(head);
-    reverseList(head);
-    printf("\nLinked List is reversed.\n");
+    printf("NULL\n");
+    reverseRecursion(head);
 
-    deleteStart();
-    deleteEnd();
-    deleteEnd();
-    deleteStart();
+    deleteAtStart();
+    deleteAtEnd();
+    deleteAtEnd();
+    deleteAtStart();
 
     deleteFromStart(3);
     size = traverse();
@@ -481,25 +497,24 @@ void main()
     deleteFromEnd(3);
     size = traverse();
     deleteFromEnd(size);
-    printf("\nReverse of Linked List\t\t\t:\t");
-    traverseBack(head);
+    reverse();
 
     checkPalindrome();
     makeCycle();
     cleanList();
     size = traverse();
-    printf("Size = %d\n", size);
+    printf("Size\t\t\t=\t%d\n", size);
 
-    insertStart(1);
-    insertEnd(1);
-    insertStart(2);
-    insertEnd(2);
-    insertAtStart(3, 3);
+    insertAtStart(1);
+    insertAtEnd(1);
+    insertAtStart(2);
+    insertAtEnd(2);
+    insertFromStart(3, 3);
 
     checkPalindrome();
     cleanList();
     makeCycle();
     cleanList();
     size = traverse();
-    printf("Size = %d\n", size);
+    printf("Size\t\t\t=\t%d\n", size);
 }
