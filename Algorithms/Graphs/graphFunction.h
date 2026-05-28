@@ -100,6 +100,21 @@ void printDistance(const int output[2][nodes], const int source = 0)
     cout << endl;
 }
 
+// handle disconnected graphs
+void printMST(const int output[2][nodes])
+{
+    cout << "\nEdges in tree are:\nu\tv\t\tweight\n";
+
+    for (int i = 0; i < nodes; i++)
+    {
+        if (!output[1][i])
+            continue;
+        cout << output[0][i] << "\t" << i << "\t:\t" << output[1][i] << endl;
+    }
+
+    cout << "Total\t\t:\t" << accumulate(output[1], output[1] + nodes, 0) << endl;
+}
+
 void printFeaturesBFS(const int feature[2][nodes], const int trees, const int root = 0)
 {
     cout << "\n\nBREADTH First Search\n";

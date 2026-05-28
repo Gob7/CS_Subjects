@@ -3,6 +3,7 @@ using namespace std;
 #define nodes 4
 
 #include "graphFunction.h"
+#include "../../Operating System/sortingMultiple.h"
 #include "BFS.h"
 #include "DFS.h"
 #include "multiStageGraph.h"
@@ -51,19 +52,22 @@ int main()
     */
 
     // Minimum Spanning Tree (undirected required)
-    int mst1[nodes][nodes], mst2[nodes][nodes], mst3[nodes][nodes];
+
+    // output[0][v]: neighbour "u" of node "v"
+    // output[1][v]: edge weight "u" to "v"
+    int mst1[2][nodes], mst2[2][nodes], mst3[2][nodes];
 
     primMST(input, mst1);
     cout << "\nMinimum spanning tree (Prim):";
-    printGraph(mst1);
+    printMST(mst1);
 
     kruskalMST(input, mst2);
     cout << "\nMinimum spanning tree (Kruskal):";
-    printGraph(mst2);
+    printMST(mst2);
 
     dijkstraMST(input, mst3);
     cout << "\nMinimum spanning tree (Dijkstra):";
-    printGraph(mst3);
+    printMST(mst3);
 
     /*
     // Multi-Stage Graph

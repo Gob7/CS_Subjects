@@ -9,19 +9,19 @@ int setBit(int number, int index)
 
     if (index >= size || index < 0)
         return 0;
-    indexNumber = pow(2, index);
+    indexNumber = 1 << index;
     return indexNumber | number;
 }
 
 void main()
 {
-    int number = 1, index, answer;
+    int number = 11, index, answer;
     // answer = pow(number, index);
     // printf("%d ^ %d = %d", number, index, answer);
     // printf("\n%d", INT_MIN);
     // printf("\n%d", (answer | 100));
 
-    for (index = 30; index < 34; index++)
+    for (index = 28; index < 34; index++)
     {
         printf("\nnumber\t\t= %d\nto set bit\t= %d", number, index);
         answer = setBit(number, index);

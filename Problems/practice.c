@@ -10,9 +10,11 @@ void operatorUnderstand()
     printf("%d\n", x - 1);
     printf("x = %d\n", x);
     printf("%d\n", x + 1);
+
     printf("\nleft shift\n");
     printf("%d\n", x << 1);
     printf("%d\n", x << 2);
+
     printf("\nright shift\n");
     printf("%d\n", x >> 1);
     printf("%d\n", x >> 2);
@@ -20,11 +22,11 @@ void operatorUnderstand()
 
 void switchCase()
 {
-    // int a = 0 ? 0/0 : -1;
-    // printf("a = %d\n", a);
+    int a = 0 ? 0 / 0 : -1;
+    printf("a = %d\n", a);
 
-    // int b = 10/2.5;
-    // printf("b = %d\n", b);
+    int b = 10 / 2.5;
+    printf("b = %d\n", b);
 
     int y = 2;
     char x = 'A';
@@ -45,14 +47,14 @@ void switchCase()
 void loopPlay()
 {
     int i = 6;
-    // for (printf("Meow\n");
-    //     printf("\tHi %d", i) < printf(" < 10\n");
-    //     printf("Let's go again\n"))
-    //     {
-    //         i++;
-    //         printf("Inside for loop\n\n");
-    //     }
-    // printf("Outside for loop\n\n");
+    for (printf("Meow\n");
+         printf("\tHi %d", i) < printf(" < 10\n");
+         printf("Let's go again\n"))
+    {
+        i++;
+        printf("Inside for loop\n\n");
+    }
+    printf("Outside for loop\n\n");
 
     for (printf("Meow\n"), i = 0, i = 5; i < 10 && printf("\tcondition\t"); i++, printf("Let's go again\n"))
     {
@@ -62,12 +64,11 @@ void loopPlay()
 
 void arrayPlay()
 {
-
-    // int a = 100, x;
-    // char b = 90, y;
-    // x = a + b;
-    // y = a + b;
-    // printf("x: %d, y: %d\n", x, y);
+    int a = 100, x;
+    char b = 90, y;
+    x = a + b;
+    y = a + b;
+    printf("x: %d, y: %d\n", x, y);
 
     int arr[4] = {1, 7};
     printf("\nSize of arr: %d\n", sizeof(arr));
@@ -76,13 +77,13 @@ void arrayPlay()
     {
         printf("%p\t->\t%u\t->\t%d\n", &arr[i], &arr[i], arr[i]);
     }
-    // int (*p1)[4] = &arr;
+    int (*p1)[4] = &arr;
     int *p2 = arr;
 
-    // printf("\nPointer p1\t: %p -> %d\n", p1, *p1);
-    // printf("Pointer p1+1\t: %p -> %d\n", p1 + 1, *(p1 + 1));
-    // printf("Pointer p1+2\t: %p -> %d\n", p1 + 2, *(p1 + 2));
-    printf("\nPointer p2\t: %p -> %d\n", p2, *p2);
+    printf("\nPointer p1\t: %p -> %d\t(add: %p -- %d)\n", p1, *p1, &p1, &p1);
+    printf("Pointer p1+1\t: %p -> %d\n", p1 + 1, *(p1 + 1));
+    printf("Pointer p1+2\t: %p -> %d\n", p1 + 2, *(p1 + 2));
+    printf("\nPointer p2\t: %p -> %d\t\t(add: %p -- %d)\n", p2, *p2, &p2, &p2);
     printf("Pointer p2+1\t: %p -> %d\n", p2 + 1, *(p2 + 1));
     printf("Pointer p2+2\t: %p -> %d\n", p2 + 2, *(p2 + 2));
     printf("\nAddress &arr\t: %p -> %u\n", &arr, &arr);
@@ -104,6 +105,7 @@ void arrayPointer()
     p++;
     p[-1] = -10;
     a[3] = 0;
+    // p[2] = 0;
 
     for (i = 0; i < 4; i++)
     {
@@ -122,27 +124,27 @@ int *return_pointer()
 
 void pointerPlay()
 {
-    // int *ptr;
-    // ptr = return_pointer();
-    // printf("Outside function: %d\n", *ptr+1);
+    int *ptr;
+    ptr = return_pointer();
+    printf("Outside function: %d\n", *ptr + 1);
 
     int *p, a;
     char *q, b;
     double *r, c;
 
-    // printf("\nSize of int pointer: %zu\n", sizeof(p));
-    // printf("Size of int: %zu\n", sizeof(a));
-    // printf("\nSize of char pointer: %zu\n", sizeof(q));
-    // printf("Size of char: %zu\n", sizeof(b));
-    // printf("\nSize of double pointer: %zu\n", sizeof(r));
-    // printf("Size of double: %zu\n", sizeof(c));
+    printf("\nSize of int pointer: %zu\n", sizeof(p));
+    printf("Size of int: %zu\n", sizeof(a));
+    printf("\nSize of char pointer: %zu\n", sizeof(q));
+    printf("Size of char: %zu\n", sizeof(b));
+    printf("\nSize of double pointer: %zu\n", sizeof(r));
+    printf("Size of double: %zu\n", sizeof(c));
 
-    // int x = printf("%zu", sizeof(p));
-    // printf("\nx = %d\n", x);
+    int x = printf("%zu", sizeof(p));
+    printf("\nx = %d\n", x);
 
     a = 1000;
     p = &a;
-    printf("p = %p -> %d\n", p, *p);
+    printf("\np = %p -> %d\n", p, *p);
     printf("p+1 = %p -> %d\n", p + 1, *(p + 1));
     q = &a;
     printf("\nq = %p -> %d\n", q, *q);
@@ -155,34 +157,34 @@ void stringPlay()
 {
     char name[] = "Nigga";
     int x = sizeof(name);
-    // printf("Size of name: %d\n", x);
-    // printf("\nname: %s\n", name);
-    // printf("name[0]: %c\n", name[0]);
-    // printf("name[5]: %c\n", name[5]);
+    printf("Size of name: %d\n", x);
+    printf("\nname: %s\n", name);
+    printf("name[0]: %c\n", name[0]);
+    printf("name[5]: %c\n", name[5]);
 
-    // name[0] = 'G';
-    // printf("\nname: %s\n", name);
+    name[0] = 'G';
+    printf("\nname: %s\n", name);
 
-    // name[5] = 'G';
-    // printf("\nname[5]: %c\n", name[5]);
+    name[5] = 'G';
+    printf("\nname[5]: %c\n", name[5]);
 
-    // name[5] = '\0';
-    // printf("\nname: %s\n", name);
+    name[5] = '\0';
+    printf("\nname: %s\n", name);
 
-    // char *n = "Hello";
-    // printf("n: %p -> %s\n", n, n);
-    // n = "World";
-    // printf("n: %p -> %s\n", n, n);
+    char *n = "Hello";
+    printf("n: %p -> %s\n", n, n);
+    n = "World";
+    printf("n: %p -> %s\n", n, n);
 
-    // printf("%p -> %s\n", "Hello", "Hello");
-    // printf("%p -> %c\n", &"Hello"[0], "Hello"[0]);
-    // printf("%p -> %c\n", &"Hello"[1], "Hello"[1]);
-    // printf("%p -> %c\n", &"Hello"[2], "Hello"[2]);
-    // printf("%p -> %c\n", &"Hello"[3], "Hello"[3]);
-    // printf("%p -> %c\n", &"Hello"[4], "Hello"[4]);
-    // printf("%p -> %d\n", &"Hello"[5], "Hello"[5]);
-    // printf("%p -> %c\n", &"Hello"[6], "Hello"[6]);
-    // printf("%p -> %c\n", &"Hello"[7], "Hello"[7]);
+    printf("%p -> %s\n", "Hello", "Hello");
+    printf("%p -> %c\n", &"Hello"[0], "Hello"[0]);
+    printf("%p -> %c\n", &"Hello"[1], "Hello"[1]);
+    printf("%p -> %c\n", &"Hello"[2], "Hello"[2]);
+    printf("%p -> %c\n", &"Hello"[3], "Hello"[3]);
+    printf("%p -> %c\n", &"Hello"[4], "Hello"[4]);
+    printf("%p -> %d\n", &"Hello"[5], "Hello"[5]);
+    printf("%p -> %c\n", &"Hello"[6], "Hello"[6]);
+    printf("%p -> %c\n", &"Hello"[7], "Hello"[7]);
 }
 
 union unionA
