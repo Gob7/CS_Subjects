@@ -65,10 +65,10 @@ void reverseRecursion(struct node *ptr)
 
 void insertAtStart(int key)
 {
-    struct node *cur = (struct node *)malloc(sizeof(struct node));
+    struct node *cur = malloc(sizeof *cur);
     if (!cur)
     {
-        printf("\t\t\tSpace unavailable\n");
+        printf("\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -81,10 +81,10 @@ void insertAtEnd(int key)
 {
     struct node *ptr, *cur;
     ptr = head;
-    cur = (struct node *)malloc(sizeof(struct node));
+    cur = malloc(sizeof *cur);
     if (!cur)
     {
-        printf("\t\t\tSpace unavailable\n");
+        printf("\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -108,7 +108,7 @@ void insertFromStart(int key, int index)
     size = traverse();
     if (index <= 0)
     {
-        printf("\t\t\tWrong input\n");
+        printf("\t\tWrong input\n");
         return;
     }
     if (index > size)
@@ -123,10 +123,10 @@ void insertFromStart(int key, int index)
         return;
     }
     ptr = head;
-    cur = (struct node *)malloc(sizeof(struct node));
+    cur = malloc(sizeof *cur);
     if (!cur)
     {
-        printf("\t\t\tSpace unavailable\n");
+        printf("\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -144,7 +144,7 @@ void insertFromEnd(int key, int index)
     size = traverse();
     if (index <= 0)
     {
-        printf("\t\t\tWrong input\n");
+        printf("\t\tWrong input\n");
         return;
     }
     if (index > size)
@@ -159,10 +159,10 @@ void insertFromEnd(int key, int index)
         return;
     }
     ptr = temp = head;
-    cur = (struct node *)malloc(sizeof(struct node));
+    cur = malloc(sizeof *cur);
     if (!cur)
     {
-        printf("\t\t\tSpace unavailable\n");
+        printf("\t\tSpace unavailable\n");
         return;
     }
     cur->data = key;
@@ -183,7 +183,7 @@ void deleteAtStart()
     struct node *ptr = head;
     if (!head)
     {
-        printf("\t\t\tWrong input\n");
+        printf("\t\tWrong input\n");
         return;
     }
     head = ptr->next;
@@ -196,7 +196,7 @@ void deleteAtEnd()
     struct node *ptr = head;
     if (!ptr)
     {
-        printf("\t\t\tWrong input\n");
+        printf("\t\tWrong input\n");
         return;
     }
     if (!ptr->next)
@@ -220,7 +220,7 @@ void deleteFromStart(int index)
     size = traverse();
     if (size == 0 || index <= 0 || index > size)
     {
-        printf("\t\t\tWrong input\n");
+        printf("\t\tWrong input\n");
         return;
     }
     if (index == 1)
@@ -245,7 +245,7 @@ void deleteFromEnd(int index)
     size = traverse();
     if (size == 0 || index <= 0 || index > size)
     {
-        printf("\t\t\tWrong input\n");
+        printf("\t\tWrong input\n");
         return;
     }
     for (i = 0; i < index; i++)
@@ -329,7 +329,7 @@ void checkPalindrome()
     int size = traverse();
     while (ptr)
     {
-        temp = (struct node *)malloc(sizeof(struct node));
+        temp = malloc(sizeof(struct node));
         if (!temp)
             return;
         temp->data = ptr->data;
@@ -373,7 +373,7 @@ int checkCycle()
 void makeCycle()
 {
     struct node *cur, *ptr = head;
-    cur = (struct node *)malloc(sizeof(struct node));
+    cur = malloc(sizeof *cur);
     if (!cur && !ptr)
     {
         printf("Can't make cycle.\n");

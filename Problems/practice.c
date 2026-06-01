@@ -146,11 +146,11 @@ void pointerPlay()
     p = &a;
     printf("\np = %p -> %d\n", p, *p);
     printf("p+1 = %p -> %d\n", p + 1, *(p + 1));
-    q = &a;
-    printf("\nq = %p -> %d\n", q, *q);
-    printf("q+1 = %p -> %d\n", q + 1, *(q + 1));
-    printf("q+2 = %p -> %d\n", q + 2, *(q + 2));
-    printf("q+3 = %p -> %d\n", q + 3, *(q + 3));
+    // q = &a;
+    // printf("\nq = %p -> %d\n", q, *q);
+    // printf("q+1 = %p -> %d\n", q + 1, *(q + 1));
+    // printf("q+2 = %p -> %d\n", q + 2, *(q + 2));
+    // printf("q+3 = %p -> %d\n", q + 3, *(q + 3));
 }
 
 void stringPlay()
@@ -187,23 +187,69 @@ void stringPlay()
     printf("%p -> %c\n", &"Hello"[7], "Hello"[7]);
 }
 
-union unionA
+union u1
 {
     int a;
     char b;
 };
 
-struct structA
+struct s1
 {
     int a;
     char b;
 };
 
-void structureUnionPlay()
+struct s2
 {
-    union unionA u;
-    struct structA s;
+    int a;
+    char b[5];
+};
 
-    printf("Size of union: %zu\n", sizeof(u));
-    printf("Size of struct: %zu\n", sizeof(s));
+struct s3
+{
+    int a;
+    char *b;
+};
+
+void main()
+{
+    union u1 u;
+    struct s1 s;
+
+    printf("Size of union u1\t: %zu\n", sizeof(u));
+    u.a = -2;
+    u.b = 'u';
+    printf("%d -> %c\n\n", u.a, u.b);
+
+    printf("Size of struct s1\t: %zu\n", sizeof(s));
+    s.a = 3;
+    s.b = 's';
+    printf("%d -> %c\n\n", s.a, s.b);
+
+    struct s2 w = {6, "cat"};
+    printf("Size of struct s2\t: %zu\n", sizeof(w));
+    printf("%d -> %s\n", w.a, w.b);
+
+    struct s2 x;
+    x.a = 7;
+    strcpy(x.b, "bat");
+    printf("%d -> %s\n\n", x.a, x.b);
+
+    struct s3 y = {8, "rat"};
+    printf("Size of struct s2\t: %zu\n", sizeof(y));
+    printf("%d -> %s\n", y.a, y.b);
+
+    struct s3 z;
+    z.a = 9;
+    z.b = "mat";
+    printf("%d -> %s\n\n", z.a, z.b);
+
+    /*
+    int   -> 4 B
+    char  -> 1 B
+    char* -> 4 B
+
+    union  u1 size = max(4, 1)           = 4
+    struct s1 size = 4 + 1 + 3 (padding) = 8
+    */
 }
