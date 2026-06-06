@@ -11,7 +11,7 @@ struct node
 
 void push(int x)
 {
-    struct node *cur = (struct node *)malloc(sizeof(struct node));
+    struct node *cur = malloc(sizeof *cur);
     if (!cur)
     {
         printf("\nStack Overflow.\n");

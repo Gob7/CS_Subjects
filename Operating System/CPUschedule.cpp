@@ -11,7 +11,7 @@ Assumption: i. Time in clock ticks (time >= 0); else algorithm fails
 using namespace std;
 #define process 5
 
-#include "sortingMultiple.h"
+#include "../../Algorithms/sortingMultiple.h"
 #include "AdditionalSchedule.h"
 #include "FirstComeFirstServe.h"
 #include "ShortestJobFirst.h"
@@ -21,7 +21,6 @@ using namespace std;
 #include "RoundRobin.h"
 #include "PriorityBased.h"
 #include "PriorityBasedPreemptive.h"
-#include "JobSequencingDeadline.h"
 
 int main()
 {
@@ -65,15 +64,5 @@ int main()
     cout << "\n\nPRIORITY BASED (PRE-EMPTIVE):";
     priorityBasedPreemptive(arrivalTime, burstTime, priority);
 
-    /*
-    int deadline[process] = {7, 2, 5, 3, 4, 5, 2, 7, 3},
-        profit[process] = {15, 20, 30, 18, 18, 10, 23, 16, 25};
-
-    descending_order(profit, 0, process, 1, deadline);
-
-    // JSD
-    cout << "\n\nJOB SEQUENCING DEADLINE:";
-    jobSequencingDeadline(deadline, profit);
-    */
     return 0;
 }

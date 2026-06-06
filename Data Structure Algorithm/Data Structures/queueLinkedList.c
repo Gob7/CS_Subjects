@@ -11,12 +11,10 @@ struct node
 
 void enQueue(int x)
 {
-    struct node *ptr, *cur;
-    ptr = head;
-    cur = (struct node *)malloc(sizeof(struct node));
+    struct node *ptr = head, *cur = malloc(sizeof *cur);
     if (!cur)
     {
-        printf("Space not available.\n");
+        printf("\nQueue Overflow.\n");
         return;
     }
 

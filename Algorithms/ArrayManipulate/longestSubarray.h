@@ -25,14 +25,3 @@ int longestContiguousSubarray(int *arr, int length, int target)
     }
     return answer;
 }
-
-int main()
-{
-    int arr[] = {1, 1, 1, 2, 2, 1, 1};
-    int target = 4;
-    int length = sizeof(arr) / sizeof(int);
-    cout << "Length of longest contiguous subarray whose sum is " << target << " is "
-         << longestContiguousSubarray(arr, length, target) << endl;
-
-    return 0;
-}

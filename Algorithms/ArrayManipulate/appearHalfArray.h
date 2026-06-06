@@ -22,15 +22,8 @@ void elementAppearMoreThanHalf(int *arr, int length)
             freq++;
 
     if (freq > (length - 1) / 2)
-        cout << key << " present " << freq << " times in array, which is greater or equal to half.\n";
+        cout << '\n'
+             << key << " present " << freq << " times in array, which is greater or equal to half.\n";
     else
-        cout << "No element is present more than half times.\n";
-}
-
-int main()
-{
-    int arr[] = {1, 1, 1, 2, 2, 1, 1};
-    int length = sizeof(arr) / sizeof(int);
-    elementAppearMoreThanHalf(arr, length);
-    return 0;
+        cout << "\nNo element is present more than half times.\n";
 }

@@ -1,9 +1,8 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
 #include "../printing.h"
-#include "../../Operating System/sortingMultiple.h"
+#include "../sortingMultiple.h"
 #include "BinaryKnapsack.h"
 #include "FractionalKnapsack.h"
 

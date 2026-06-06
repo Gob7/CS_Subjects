@@ -73,10 +73,3 @@ void printPriority(const int *arrivalTime, const int *priority)
     for (int i = 0; i < process; i++)
         cout << arrivalTime[i] << "\t" << priority[i] << endl;
 }
-
-void printDeadlineProfit(const int *deadline, const int *profit)
-{
-    cout << "\nDeadline\tProfit\n";
-    for (int i = 0; i < process; i++)
-        cout << deadline[i] << "\t\t" << profit[i] << endl;
-}

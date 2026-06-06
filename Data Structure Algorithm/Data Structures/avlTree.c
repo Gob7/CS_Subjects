@@ -8,36 +8,21 @@ int max(int a, int b)
 {
     return (a > b) ? a : b;
 }
-
 int height(struct node *ptr)
 {
     if (!ptr)
         return 0;
     return ptr->height;
 }
-
 void updateHeight(struct node *ptr)
 {
     ptr->height = 1 + max(height(ptr->left), height(ptr->right));
 }
-
 int balanceFactor(struct node *ptr)
 {
     if (!ptr)
         return 0;
     return height(ptr->left) - height(ptr->right);
-}
-
-struct node *create(int x)
-{
-    struct node *cur = (struct node *)malloc(sizeof(struct node));
-    if (cur)
-    {
-        cur->height = 1;
-        cur->value = x;
-        cur->left = cur->right = NULL;
-    }
-    return cur;
 }
 
 struct node *rightRotate(struct node *cur)
@@ -52,7 +37,6 @@ struct node *rightRotate(struct node *cur)
     updateHeight(ptr);
     return ptr;
 }
-
 struct node *leftRotate(struct node *cur)
 {
     struct node *ptr, *temp;
@@ -66,6 +50,17 @@ struct node *leftRotate(struct node *cur)
     return ptr;
 }
 
+struct node *create(int x)
+{
+    struct node *cur = malloc(sizeof *cur);
+    if (cur)
+    {
+        cur->height = 1;
+        cur->value = x;
+        cur->left = cur->right = NULL;
+    }
+    return cur;
+}
 struct node *insert(struct node *ptr, int x)
 {
     if (!ptr)
@@ -81,7 +76,7 @@ struct node *insert(struct node *ptr, int x)
     updateHeight(ptr);
     int balance = balanceFactor(ptr);
 
-    // can be optimized; but better to keep it simple.
+    /* can be optimized; but better to keep it simple */
     // Left Left Case
     if (balance > 1 && ptr->left->value > x)
     {

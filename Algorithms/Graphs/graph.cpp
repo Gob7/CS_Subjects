@@ -4,8 +4,7 @@ using namespace std;
 
 #include "graphFunction.h"
 #include "../../Operating System/sortingMultiple.h"
-#include "BFS.h"
-#include "DFS.h"
+#include "graphTraversal.h"
 #include "multiStageGraph.h"
 #include "shortestPath.h"
 #include "minimumSpanningTree.h"
@@ -19,7 +18,6 @@ int main()
     initUndirectedGraph(input);
     printGraph(input);
 
-    /*
     int feature[2][nodes], trees;
 
     // BFS (feature -> index: property -> 0: level, 1: parent)
@@ -29,7 +27,7 @@ int main()
     // DFS (feature -> index: property -> 0: start, 1: finish)
     trees = DepthFirstSearch(input, feature);
     printFeaturesDFS(feature, trees);
-    */
+
     /*
     int negCycle, allPair[nodes][nodes], singleSource1[2][nodes], singleSource2[2][nodes];
 
@@ -50,7 +48,7 @@ int main()
         cout << "\t\t(Negative weight cycle present in graph)";
     printDistance(singleSource2);
     */
-
+    /*
     // Minimum Spanning Tree (undirected required)
 
     // output[0][v]: neighbour "u" of node "v"
@@ -68,7 +66,7 @@ int main()
     dijkstraMST(input, mst3);
     cout << "\nMinimum spanning tree (Dijkstra):";
     printMST(mst3);
-
+    */
     /*
     // Multi-Stage Graph
     int minCost, levels = 5;

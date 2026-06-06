@@ -6,12 +6,9 @@
 
 void insert(int x)
 {
-    struct node *ptr, *cur;
-    cur = (struct node *)malloc(sizeof(struct node));
-    ptr = root;
+    struct node *ptr = root, *cur = malloc(sizeof *cur);
     cur->value = x;
-    cur->left = NULL;
-    cur->right = NULL;
+    cur->left = cur->right = NULL;
 
     if (!ptr)
     {
@@ -49,8 +46,7 @@ void zeroDelete(struct node *ptr, struct node *cur)
     free(cur);
 }
 
-// can be optimized;
-// but better to keep it simple for understanding.
+// can be optimized; but better to keep it simple for understanding.
 void oneDelete(struct node *ptr, struct node *cur)
 {
     if (root == cur && cur->left)
@@ -78,14 +74,14 @@ void twoDelete(struct node *cur)
 {
     // find the largest value in the left subtree;
     // swap it with the current node; then delete the largest node.
-    struct node *next, *ptr;
-    ptr = cur;
+    struct node *ptr = cur, *next;
     next = cur->left;
     while (next->right)
     {
         ptr = next;
         next = next->right;
     }
+
     int temp = next->value;
     next->value = cur->value;
     cur->value = temp;
@@ -100,7 +96,12 @@ void delete(struct node *ptr, struct node *cur, int x)
 {
     if (!cur)
         return;
-    if (cur->value == x)
+    if (cur->value > x)
+        delete(cur, cur->left, x);
+    else if (cur->value < x)
+        delete(cur, cur->right, x);
+
+    else
     {
         if (cur->left && cur->right)
             twoDelete(cur);
@@ -109,10 +110,6 @@ void delete(struct node *ptr, struct node *cur, int x)
         else
             oneDelete(ptr, cur);
     }
-    else if (cur->value > x)
-        delete(cur, cur->left, x);
-    else
-        delete(cur, cur->right, x);
 }
 
 bool search(int x, struct node *ptr)
@@ -121,6 +118,7 @@ bool search(int x, struct node *ptr)
         return false;
     if (ptr->value == x)
         return true;
+
     if (ptr->value > x)
         search(x, ptr->left);
     else
