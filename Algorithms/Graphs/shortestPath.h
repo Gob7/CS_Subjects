@@ -102,7 +102,7 @@ void bellmanFord(const int input[][nodes], int output[2][nodes], int tempDistanc
     }
 }
 
-int bellmanFordDistance(const int input[][nodes], int output[2][nodes], const int source = 0)
+bool bellmanFordDistance(const int input[][nodes], int output[2][nodes], const int source = 0)
 {
     int i, toVisit = 0, tempDistance[nodes];
     initSingleSource(output, source);
@@ -117,8 +117,4 @@ int bellmanFordDistance(const int input[][nodes], int output[2][nodes], const in
             toVisit++;
 
     return toVisit;
-}
-
-int travelingSalesman(const int input[][nodes])
-{
 }

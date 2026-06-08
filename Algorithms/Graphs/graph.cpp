@@ -3,11 +3,12 @@ using namespace std;
 #define nodes 4
 
 #include "graphFunction.h"
-#include "../../Operating System/sortingMultiple.h"
+#include "../sortingMultiple.h"
 #include "graphTraversal.h"
 #include "multiStageGraph.h"
 #include "shortestPath.h"
 #include "minimumSpanningTree.h"
+#include "tours.h"
 
 void makeDirectedGraph(int input[][nodes]);
 int main()
