@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "../printing.h"
-#include "../sortingMultiple.h"
+#include "../../Common/printArrayMatrix.h"
 #include "CoinChange.h"
 #include "RodCut.h"
 #include "SumOfSubsets.h"

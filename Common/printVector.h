@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void numPrint(vector<int> vec)
+{
+    for (int i = vec.size() - 1; i >= 0; i--)
+        cout << vec[i];
+}
+
+void vecPrint(vector<int> vec)
+{
+    for (int i = 0; i < vec.size(); i++)
+        cout << "(" << vec[i] << ") -> ";
+    cout << "NULL" << endl;
+}
+
 vector<int> trimmer(vector<int> vec)
 {
     int i = vec.size() - 1;

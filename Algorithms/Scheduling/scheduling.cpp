@@ -2,8 +2,8 @@
 using namespace std;
 #define job 9
 
-#include "../sortingMultiple.h"
-#include "../printing.h"
+#include "../../Common/printArrayMatrix.h"
+#include "../../Common/sortingMultiple.h"
 #include "../SearchSort/HeapSort.h"
 #include "JobScheduling.h"
 #include "IntervalScheduling.h"
@@ -23,8 +23,8 @@ int main()
         profit[job] = {11, 7, 9, 18, 3, 17, 54, 20, 22};
 
     // JSD
-    // cout << "\nJOB SEQUENCING DEADLINE:";
-    // k = jobSequencingDeadline(finish, profit);
+    cout << "\nJOB SEQUENCING DEADLINE:";
+    k = jobSequencingDeadline(finish, profit);
 
     // Activity Selection
     cout << "\n\nINTERVAL SCHEDULING:";

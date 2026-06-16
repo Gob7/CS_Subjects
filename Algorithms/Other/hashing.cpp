@@ -1,17 +1,13 @@
 // Collision Reduction Techniques in Hashing
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <math.h>
+#include <bits/stdc++.h>
+using namespace std;
 
+#include "../../Common/printTreeList.h"
 #define max 10
+
 int memoryArray[max];
 static int memoryArrayFilled = 0;
-struct node
-{
-    int data;
-    struct node *next;
-} *memoryList[max];
+listNode *memoryList[max];
 
 void init()
 {
@@ -120,31 +116,26 @@ void printArray()
 void traverseList()
 {
     printf("\nmemoryList contains:\n");
-    struct node *ptr;
+    listNode *ptr;
     for (int index = 0; index < max; index++)
     {
         ptr = memoryList[index];
         printf("%d\t-> ", index);
-        while (ptr)
-        {
-            printf("%d -> ", ptr->data);
-            ptr = ptr->next;
-        }
-        printf("X\n");
+        listPrint(ptr);
     }
 }
 
 // Can use AVL tree or BST instead of linked list
 void separateChaining(int key)
 {
-    struct node *cur = (struct node *)malloc(sizeof(struct node));
+    listNode *cur = new listNode;
     int index = key % max;
     if (!cur)
     {
         printf("Space not available.\n");
         return;
     }
-    cur->data = key;
+    cur->value = key;
     cur->next = memoryList[index];
     memoryList[index] = cur;
 }
@@ -152,13 +143,13 @@ void separateChaining(int key)
 // Deletion is easier in separate chaining
 void deleteFromList(int key)
 {
-    struct node *ptr, *cur;
+    listNode *ptr, *cur;
     int index = key % max;
     cur = memoryList[index];
     ptr = NULL;
     while (cur)
     {
-        if (cur->data == key)
+        if (cur->value == key)
         {
             if (!ptr)
                 memoryList[index] = cur->next;
@@ -172,7 +163,7 @@ void deleteFromList(int key)
     }
 }
 
-void main()
+int main()
 {
     // Change according to the probing technique (openAddressing function)
     printf("Open Addressing\t");
@@ -223,4 +214,6 @@ void main()
     deleteFromList(0); // not in list
     printf("\n\nAfter deleting 11, 81, 15, 7");
     traverseList();
+
+    return 0;
 }

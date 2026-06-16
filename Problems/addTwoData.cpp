@@ -14,10 +14,10 @@ struct node
     }
 };
 
-struct node *addNumber(struct node *a, struct node *b)
+struct node *addNumber(node *a, node *b)
 {
     int x, y, sum, car = 0;
-    struct node *c = NULL, *tail = NULL, *ptr;
+    struct node *c = nullptr, *tail = nullptr, *ptr;
     while (a || b)
     {
         x = a ? a->data : 0;

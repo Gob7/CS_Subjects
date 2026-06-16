@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "../printing.h"
+#include "../../Common/printArrayMatrix.h"
 #include "matrixAddSub.h"
 #include "matrixMultiply.h"
 

@@ -1,14 +1,13 @@
 // binary search tree
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "treePrint.h"
+#include <bits/stdc++.h>
+using namespace std;
+#include "../Common/printTreeList.h"
 
 void insert(int x)
 {
-    struct node *ptr = root, *cur = malloc(sizeof *cur);
+    treeNode *ptr = root, *cur = new treeNode;
     cur->value = x;
-    cur->left = cur->right = NULL;
+    cur->left = cur->right = nullptr;
 
     if (!ptr)
     {
@@ -35,19 +34,19 @@ void insert(int x)
     // printf("%d added.\n", ptr->value);
 }
 
-void zeroDelete(struct node *ptr, struct node *cur)
+void zeroDelete(treeNode *ptr, treeNode *cur)
 {
     if (root == cur)
-        root = NULL;
+        root = nullptr;
     else if (ptr->left == cur)
-        ptr->left = NULL;
+        ptr->left = nullptr;
     else
-        ptr->right = NULL;
-    free(cur);
+        ptr->right = nullptr;
+    delete cur;
 }
 
 // can be optimized; but better to keep it simple for understanding.
-void oneDelete(struct node *ptr, struct node *cur)
+void oneDelete(treeNode *ptr, treeNode *cur)
 {
     if (root == cur && cur->left)
         root = cur->left;
@@ -67,14 +66,14 @@ void oneDelete(struct node *ptr, struct node *cur)
     else if (ptr->right == cur && cur->right)
         ptr->right = cur->right;
 
-    free(cur);
+    delete cur;
 }
 
-void twoDelete(struct node *cur)
+void twoDelete(treeNode *cur)
 {
     // find the largest value in the left subtree;
-    // swap it with the current node; then delete the largest node.
-    struct node *ptr = cur, *next;
+    // swap it with the current treeNode; then delete the largest treeNode.
+    treeNode *ptr = cur, *next;
     next = cur->left;
     while (next->right)
     {
@@ -92,14 +91,14 @@ void twoDelete(struct node *cur)
         zeroDelete(ptr, next);
 }
 
-void delete(struct node *ptr, struct node *cur, int x)
+void deleteNode(treeNode *ptr, treeNode *cur, int x)
 {
     if (!cur)
         return;
     if (cur->value > x)
-        delete(cur, cur->left, x);
+        deleteNode(cur, cur->left, x);
     else if (cur->value < x)
-        delete(cur, cur->right, x);
+        deleteNode(cur, cur->right, x);
 
     else
     {
@@ -112,7 +111,7 @@ void delete(struct node *ptr, struct node *cur, int x)
     }
 }
 
-bool search(int x, struct node *ptr)
+bool search(int x, treeNode *ptr)
 {
     if (!ptr)
         return false;
@@ -125,11 +124,11 @@ bool search(int x, struct node *ptr)
         search(x, ptr->right);
 }
 
-void main()
+int main()
 {
-    delete(NULL, root, 0);
+    deleteNode(nullptr, root, 0);
     printf("\n\tDeleted 0");
-    print();
+    treePrint();
 
     insert(100);
     insert(50);
@@ -148,22 +147,24 @@ void main()
     insert(100);
     insert(40);
     insert(35);
-    print();
+    treePrint();
 
     // zero = 90; one = 20
-    delete(NULL, root, 90);
-    delete(NULL, root, 20);
+    deleteNode(nullptr, root, 90);
+    deleteNode(nullptr, root, 20);
     printf("\n\t\t\t\t\tDeleted 20, 90");
-    print();
+    treePrint();
 
     // two = 50, 150
-    delete(NULL, root, 50);
-    delete(NULL, root, 150);
+    deleteNode(nullptr, root, 50);
+    deleteNode(nullptr, root, 150);
     printf("\n\t\t\t\tDeleted 50, 150");
-    print();
+    treePrint();
 
     // root = 100
-    delete(NULL, root, 100);
+    deleteNode(nullptr, root, 100);
     printf("\n\t\t\tDeleted 100 (root)");
-    print();
+    treePrint();
+
+    return 0;
 }

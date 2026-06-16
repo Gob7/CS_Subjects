@@ -11,7 +11,7 @@ Assumption: i. Time in clock ticks (time >= 0); else algorithm fails
 using namespace std;
 #define process 5
 
-#include "../../Algorithms/sortingMultiple.h"
+#include "../Common/sortingMultiple.h"
 #include "AdditionalSchedule.h"
 #include "FirstComeFirstServe.h"
 #include "ShortestJobFirst.h"

@@ -1,12 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node
-{
-    int value;
-    struct node *next;
-};
-
 template <typename T>
 void arrPrint(const T *arr, int start, int end)
 {
@@ -34,13 +28,6 @@ void arrPrint(const T *startTime, const T *finishTime, const T *weight, const T 
              << '\t' << weight[i] << '\t' << criticalPoint[i + 1] - 1 << endl;
 }
 
-void vecPrint(vector<int> vec)
-{
-    for (int i = 0; i < vec.size(); i++)
-        cout << "(" << vec[i] << ") -> ";
-    cout << "NULL" << endl;
-}
-
 template <typename T>
 void matrixPrint(T *a, int row, int col)
 {
@@ -61,20 +48,4 @@ void matrixPrint(T *a, int row, int col)
     for (i = 0; i < k; i++)
         cout << "-";
     cout << "\n\n";
-}
-
-void numPrint(vector<int> vec)
-{
-    for (int i = vec.size() - 1; i >= 0; i--)
-        cout << vec[i];
-}
-
-void listPrint(node *ptr)
-{
-    while (ptr)
-    {
-        cout << ptr->value << "\t-> ";
-        ptr = ptr->next;
-    }
-    cout << "NULL\n";
 }

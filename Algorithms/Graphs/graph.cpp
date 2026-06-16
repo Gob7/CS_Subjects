@@ -3,7 +3,6 @@ using namespace std;
 #define nodes 4
 
 #include "graphFunction.h"
-#include "../sortingMultiple.h"
 #include "graphTraversal.h"
 #include "multiStageGraph.h"
 #include "shortestPath.h"
@@ -18,7 +17,7 @@ int main()
     makeDirectedGraph(input);
     initUndirectedGraph(input);
     printGraph(input);
-
+    /*
     int feature[2][nodes], trees;
 
     // BFS (feature -> index: property -> 0: level, 1: parent)
@@ -28,7 +27,7 @@ int main()
     // DFS (feature -> index: property -> 0: start, 1: finish)
     trees = DepthFirstSearch(input, feature);
     printFeaturesDFS(feature, trees);
-
+    */
     /*
     int negCycle, allPair[nodes][nodes], singleSource1[2][nodes], singleSource2[2][nodes];
 
@@ -50,23 +49,23 @@ int main()
     printDistance(singleSource2);
     */
     /*
-    // Minimum Spanning Tree (undirected required)
+        // Minimum Spanning Tree (undirected required)
 
-    // output[0][v]: neighbour "u" of node "v"
-    // output[1][v]: edge weight "u" to "v"
-    int mst1[2][nodes], mst2[2][nodes], mst3[2][nodes];
+        // output[0][v]: neighbour "u" of node "v"
+        // output[1][v]: edge weight "u" to "v"
+        int mst1[2][nodes], mst2[2][nodes], mst3[2][nodes];
 
-    primMST(input, mst1);
-    cout << "\nMinimum spanning tree (Prim):";
-    printMST(mst1);
+        primMST(input, mst1);
+        cout << "\nMinimum spanning tree (Prim):";
+        printMST(mst1);
 
-    kruskalMST(input, mst2);
-    cout << "\nMinimum spanning tree (Kruskal):";
-    printMST(mst2);
+        kruskalMST(input, mst2);
+        cout << "\nMinimum spanning tree (Kruskal):";
+        printMST(mst2);
 
-    dijkstraMST(input, mst3);
-    cout << "\nMinimum spanning tree (Dijkstra):";
-    printMST(mst3);
+        dijkstraMST(input, mst3);
+        cout << "\nMinimum spanning tree (Dijkstra):";
+        printMST(mst3);
     */
     /*
     // Multi-Stage Graph

@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "../printing.h"
-#include "../vectorOpn.h"
+#include "../../Common/printVector.h"
 #include "longIntAddSub.h"
 #include "longIntMul.h"
 

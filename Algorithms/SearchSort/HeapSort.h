@@ -37,15 +37,30 @@ void maxHeapify(int *arr, const int start, const int end, const int index)
     }
 }
 
+void buildMinHeap(int *arr, const int start, const int end)
+{
+    for (int i = start + (end - start) / 2 - 1; i >= start; i--)
+        minHeapify(arr, start, end, i);
+}
+void buildMaxHeap(int *arr, const int start, const int end)
+{
+    for (int i = start + (end - start) / 2 - 1; i >= start; i--)
+        maxHeapify(arr, start, end, i);
+}
+
+void heapSortDesc(int *arr, const int start, const int end)
+{
+    buildMinHeap(arr, start, end);
+    for (int i = end - 1; i >= start; i--)
+    {
+        swap(arr[start], arr[i]);
+        minHeapify(arr, start, i, start);
+    }
+}
 void heapSort(int *arr, const int start, const int end)
 {
-    int i, x = start + (end - start) / 2 - 1;
-    // Build Heap
-    for (i = x; i >= start; i--)
-        maxHeapify(arr, start, end, i);
-
-    // Heap Sort
-    for (i = end - 1; i >= start; i--)
+    buildMaxHeap(arr, start, end);
+    for (int i = end - 1; i >= start; i--)
     {
         swap(arr[start], arr[i]);
         maxHeapify(arr, start, i, start);

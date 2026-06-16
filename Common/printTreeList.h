@@ -1,13 +1,29 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <bits/stdc++.h>
+using namespace std;
 
-struct node
+struct listNode
+{
+    int value;
+    struct listNode *next;
+};
+
+struct treeNode
 {
     int value, height;
-    struct node *left, *right;
+    struct treeNode *left, *right;
 } *root = NULL;
 
-void preOrder(struct node *ptr)
+void listPrint(listNode *ptr)
+{
+    while (ptr)
+    {
+        cout << ptr->value << "\t-> ";
+        ptr = ptr->next;
+    }
+    cout << "NULL\n";
+}
+
+void preOrder(struct treeNode *ptr)
 {
     if (!ptr)
         return;
@@ -16,7 +32,7 @@ void preOrder(struct node *ptr)
     preOrder(ptr->right);
 }
 
-void inOrder(struct node *ptr)
+void inOrder(struct treeNode *ptr)
 {
     if (!ptr)
         return;
@@ -25,7 +41,7 @@ void inOrder(struct node *ptr)
     inOrder(ptr->right);
 }
 
-void postOrder(struct node *ptr)
+void postOrder(struct treeNode *ptr)
 {
     if (!ptr)
         return;
@@ -34,7 +50,7 @@ void postOrder(struct node *ptr)
     printf("%d -> ", ptr->value);
 }
 
-void print()
+void treePrint()
 {
     printf("\nPreOrder:\t");
     preOrder(root);

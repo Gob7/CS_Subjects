@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "../printing.h"
+#include "../../Common/printArrayMatrix.h"
+#include "../../Common/printTreeList.h"
 #include "BinarySearch.h"
 #include "BubbleSort.h"
 #include "SelectionSort.h"

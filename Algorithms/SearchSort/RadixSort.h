@@ -7,17 +7,17 @@ void radixSortAlgo(int *arr, const int start, const int end)
     int i, digit, bit,
         base = 10,
         maxBit = floor(log10(*max_element(arr + start, arr + end - 1))) + 1;
-    node *cur, *ptr;
+    listNode *cur, *ptr;
 
     for (bit = 1; bit <= maxBit; bit++)
     {
-        node *bucket[base] = {nullptr};
-        node *tail[base] = {nullptr};
+        listNode *bucket[base] = {nullptr};
+        listNode *tail[base] = {nullptr};
 
         // Distribute into buckets
         for (i = start; i < end; i++)
         {
-            cur = new node{arr[i], nullptr};
+            cur = new listNode{arr[i], nullptr};
             digit = (arr[i] / (int)pow(base, bit - 1)) % base;
             ptr = bucket[digit];
 

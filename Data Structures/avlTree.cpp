@@ -1,33 +1,32 @@
 // AVL tree
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "treePrint.h"
+#include <bits/stdc++.h>
+using namespace std;
+#include "../Common/printTreeList.h"
 
 int max(int a, int b)
 {
     return (a > b) ? a : b;
 }
-int height(struct node *ptr)
+int height(treeNode *ptr)
 {
     if (!ptr)
         return 0;
     return ptr->height;
 }
-void updateHeight(struct node *ptr)
+void updateHeight(treeNode *ptr)
 {
     ptr->height = 1 + max(height(ptr->left), height(ptr->right));
 }
-int balanceFactor(struct node *ptr)
+int balanceFactor(treeNode *ptr)
 {
     if (!ptr)
         return 0;
     return height(ptr->left) - height(ptr->right);
 }
 
-struct node *rightRotate(struct node *cur)
+treeNode *rightRotate(treeNode *cur)
 {
-    struct node *ptr, *temp;
+    treeNode *ptr, *temp;
     ptr = cur->left;
     temp = ptr->right;
     ptr->right = cur;
@@ -37,9 +36,9 @@ struct node *rightRotate(struct node *cur)
     updateHeight(ptr);
     return ptr;
 }
-struct node *leftRotate(struct node *cur)
+treeNode *leftRotate(treeNode *cur)
 {
-    struct node *ptr, *temp;
+    treeNode *ptr, *temp;
     ptr = cur->right;
     temp = ptr->left;
     ptr->left = cur;
@@ -50,18 +49,18 @@ struct node *leftRotate(struct node *cur)
     return ptr;
 }
 
-struct node *create(int x)
+treeNode *create(int x)
 {
-    struct node *cur = malloc(sizeof *cur);
+    treeNode *cur = new treeNode;
     if (cur)
     {
         cur->height = 1;
         cur->value = x;
-        cur->left = cur->right = NULL;
+        cur->left = cur->right = nullptr;
     }
     return cur;
 }
-struct node *insert(struct node *ptr, int x)
+treeNode *insert(treeNode *ptr, int x)
 {
     if (!ptr)
         return create(x);
@@ -103,7 +102,7 @@ struct node *insert(struct node *ptr, int x)
     return ptr;
 }
 
-void main()
+int main()
 {
     // print();
     root = insert(root, 50);
@@ -113,10 +112,12 @@ void main()
     // print();
     root = insert(root, 8);
     root = insert(root, 15);
-    print();
+    treePrint();
     root = insert(root, 32);
     root = insert(root, 46);
     root = insert(root, 11);
     root = insert(root, 38);
-    print();
+    treePrint();
+
+    return 0;
 }
