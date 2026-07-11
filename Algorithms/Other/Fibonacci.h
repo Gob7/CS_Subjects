@@ -17,19 +17,19 @@ int fibonacciBruteForce(int num)
 // S(n) = O(n + n) (recursion stack + memoization)
 int fibonacciTopDown(int num)
 {
-    int i = memo.size();
+    int i = memoFib.size();
     if (num >= i)
         for (; i <= num; i++)
-            memo.push_back(-1);
+            memoFib.push_back(-1);
 
-    if (memo[num] == -1)
+    if (memoFib[num] == -1)
     {
         if (num <= 1)
-            memo[num] = num;
+            memoFib[num] = num;
         else
-            memo[num] = fibonacciTopDown(num - 1) + fibonacciTopDown(num - 2);
+            memoFib[num] = fibonacciTopDown(num - 1) + fibonacciTopDown(num - 2);
     }
-    return memo[num];
+    return memoFib[num];
 }
 
 // Bottom-Up Method (Efficient)
@@ -37,16 +37,16 @@ int fibonacciTopDown(int num)
 // S(n) = O(n) (tabulation; no recursion)
 int fibonacciBottomUp(int num)
 {
-    int i = table.size();
+    int i = tableFib.size();
     if (num >= i)
     {
         for (; i <= num; i++)
         {
             if (i <= 1)
-                table.push_back(i);
+                tableFib.push_back(i);
             else
-                table.push_back(table[i - 1] + table[i - 2]);
+                tableFib.push_back(tableFib[i - 1] + tableFib[i - 2]);
         }
     }
-    return table[num];
+    return tableFib[num];
 }

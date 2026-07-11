@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#include "../../Common/printArrayMatrix.h"
 #include "../../Common/printTreeList.h"
 #define max 10
 
@@ -101,26 +102,27 @@ void openAddressing(int key)
 
 void printArray()
 {
-    printf("\nmemoryArray contains:");
+    cout << "\nmemoryArray contains:";
     for (int index = 0; index < max; index++)
     {
-        printf("\n%d\t-> ", index);
+        cout << "\n"
+             << index << "\t-> ";
         if (memoryArray[index] != INT_MIN)
-            printf("%d", memoryArray[index]);
+            cout << memoryArray[index];
         else
-            printf("NULL");
+            cout << "NULL";
     }
-    printf("\n");
+    cout << endl;
 }
 
 void traverseList()
 {
-    printf("\nmemoryList contains:\n");
+    cout << "\nmemoryList contains:\n";
     listNode *ptr;
     for (int index = 0; index < max; index++)
     {
         ptr = memoryList[index];
-        printf("%d\t-> ", index);
+        cout << index << "\t-> ";
         listPrint(ptr);
     }
 }
@@ -132,7 +134,7 @@ void separateChaining(int key)
     int index = key % max;
     if (!cur)
     {
-        printf("Space not available.\n");
+        cout << "Space not available.\n";
         return;
     }
     cur->value = key;
@@ -166,12 +168,12 @@ void deleteFromList(int key)
 int main()
 {
     // Change according to the probing technique (openAddressing function)
-    printf("Open Addressing\t");
-    // printf("(Linear Probing)\n");
-    // printf("(Quadratic Probing)\n");
-    printf("(Cubic Probing)\n");
-    // printf("(Double Hashing)\n");
-    printf("------------------------------------------------\n");
+    cout << "Open Addressing\t";
+    // cout <<"(Linear Probing)\n";
+    // cout <<"(Quadratic Probing)\n";
+    cout << "(Cubic Probing)\n";
+    // cout <<"(Double Hashing)\n";
+    cout << "------------------------------------------------\n";
 
     init();
     // printArray();
@@ -184,11 +186,11 @@ int main()
     openAddressing(69);
     openAddressing(84);
     openAddressing(93);
-    printf("memoryArrayFilled = %d", memoryArrayFilled);
+    cout << "memoryArrayFilled = " << memoryArrayFilled;
     printArray();
 
-    printf("\n\n\n\nSeparate Chaining\n");
-    printf("------------------------------------------------\n");
+    cout << "\n\n\n\nSeparate Chaining\n";
+    cout << "------------------------------------------------\n";
     separateChaining(77);
     separateChaining(11);
     separateChaining(34);
@@ -212,7 +214,7 @@ int main()
     deleteFromList(15);
     deleteFromList(7);
     deleteFromList(0); // not in list
-    printf("\n\nAfter deleting 11, 81, 15, 7");
+    cout << "\n\nAfter deleting 11, 81, 15, 7";
     traverseList();
 
     return 0;

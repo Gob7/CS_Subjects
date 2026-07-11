@@ -5,13 +5,14 @@ struct listNode
 {
     int value;
     struct listNode *next;
-};
+} *head = nullptr;
 
 struct treeNode
 {
-    int value, height;
+    char height;
+    int value;
     struct treeNode *left, *right;
-} *root = NULL;
+} *root = nullptr;
 
 void listPrint(listNode *ptr)
 {
@@ -23,42 +24,44 @@ void listPrint(listNode *ptr)
     cout << "NULL\n";
 }
 
-void preOrder(struct treeNode *ptr)
+void preOrder(treeNode *ptr)
 {
     if (!ptr)
         return;
-    printf("%d -> ", ptr->value);
+    cout << ptr->value << " -> ";
     preOrder(ptr->left);
     preOrder(ptr->right);
 }
 
-void inOrder(struct treeNode *ptr)
+void inOrder(treeNode *ptr)
 {
     if (!ptr)
         return;
     inOrder(ptr->left);
-    printf("%d -> ", ptr->value);
+    cout << ptr->value << " -> ";
     inOrder(ptr->right);
 }
 
-void postOrder(struct treeNode *ptr)
+void postOrder(treeNode *ptr)
 {
     if (!ptr)
         return;
     postOrder(ptr->left);
     postOrder(ptr->right);
-    printf("%d -> ", ptr->value);
+    cout << ptr->value << " -> ";
 }
 
 void treePrint()
 {
-    printf("\nPreOrder:\t");
+    cout << "\nPreOrder:\t";
     preOrder(root);
-    printf("NULL\n");
-    printf("InOrder:\t");
+    cout << "NULL\n";
+
+    cout << "InOrder:\t";
     inOrder(root);
-    printf("NULL\n");
-    printf("PostOrder:\t");
+    cout << "NULL\n";
+
+    cout << "PostOrder:\t";
     postOrder(root);
-    printf("NULL\n");
+    cout << "NULL\n";
 }

@@ -253,3 +253,42 @@ void main()
     struct s1 size = 4 + 1 + 3 (padding) = 8
     */
 }
+
+void operatorPlay()
+{
+    // printf("20 mod 6 = %d\n", 20 % 6);
+    // printf("-20 mod 6 = %d\n", -20 % 6);
+    // printf("20 mod -6 = %d\n", 20 % -6);
+    // printf("-20 mod -6 = %d\n", -20 % -6);
+
+    // printf("20 / 6 = %d\n", 20 / 6);
+    // printf("-20 / 6 = %d\n", -20 / 6);
+    // printf("20 / -6 = %d\n", 20 / -6);
+    // printf("-20 / -6 = %d\n", -20 / -6);
+
+    // printf("%d ; %d\n", 6, 9);
+    // printf("%d\n", 6, 9);
+    // printf("%d ; %d ; %d\n", 6, 9);
+
+    // int a = 10;
+    // printf("%d\n", sizeof 10);
+    // printf("%d\n", sizeof(10 + 5));
+    // printf("%d\n", sizeof 10 + 5);
+    // printf("%d\n", sizeof(a));
+    // printf("%d\n", sizeof a);
+    // printf("%d\n", sizeof(int));
+
+    // printf("%d\n", a);
+    // printf("%d, %d, %d\n", a, a < ++a, a++);
+
+    int x = 0, y = 1;
+    int *p = &x, *q, *r = NULL;
+    q = &y;
+    printf("%p -> %d\n", &x, x);
+    printf("%p -> %d\n", &y, y);
+    printf("%p -> %d\n", p, *p);
+    printf("%p -> %d\n", q, *q);
+    printf("%p -> NULL\n\n", r);
+    *q = -1;
+    printf("%p -> %d\n", q, y);
+}
