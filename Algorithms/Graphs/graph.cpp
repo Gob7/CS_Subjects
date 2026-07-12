@@ -2,6 +2,7 @@
 using namespace std;
 #define nodes 4
 
+#include "../../Common/printArrayMatrix.h"
 #include "graphFunction.h"
 #include "graphTraversal.h"
 #include "multiStageGraph.h"
@@ -16,7 +17,7 @@ int main()
     initGraph(input);
     makeDirectedGraph(input);
     initUndirectedGraph(input);
-    printGraph(input);
+    matrixPrint(input[0], nodes, nodes);
     /*
     int feature[2][nodes], trees;
 
@@ -33,7 +34,7 @@ int main()
 
     floydWarshellDistance(input, allPair);
     cout << "\nAll pair shortest path (Floyd-Warshell):";
-    printGraph(allPair);
+    matrixPrint(allPair[0], nodes, nodes);
 
     // output[0][v]: parent of node "v"
     // output[1][v]: shortest distance to node "v"

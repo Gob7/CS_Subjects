@@ -36,7 +36,7 @@ unsigned int printHuffman(treeNode *ptr, string code)
     return x1 + x2;
 }
 
-void huffmanCoding(const char *alphabet, const int *frequency, const int length)
+unsigned int huffmanCoding(const char *alphabet, const unsigned int *frequency, const unsigned int length)
 {
     unsigned int i;
     treeNode *nodes[length];
@@ -55,6 +55,6 @@ void huffmanCoding(const char *alphabet, const int *frequency, const int length)
         nodes[length - i - 1] = ptr;
     }
 
-    i = printHuffman(nodes[0], "");
-    cout << "Total\t=  " << i << endl;
+    cout << "\nHuffman Coding\n";
+    return printHuffman(nodes[0], "");
 }

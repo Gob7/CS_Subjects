@@ -45,50 +45,6 @@ void pathPrint(const int levels, const int path[][nodes])
     cout << j + 1 << " ]\n\n";
 }
 
-void printGraph(const int input[][nodes])
-{
-    int i, j, x;
-
-    // top
-    cout << "\n   ";
-    x = 7;
-    fill_n(ostream_iterator<char>(cout), x - 1, '_');
-    for (i = 0; i < nodes; i++)
-    {
-        x = i > 9 ? 6 : 7;
-        cout << i;
-        fill_n(ostream_iterator<char>(cout), x, '_');
-    }
-
-    cout << "\n  |";
-    for (i = 0; i <= nodes; i++)
-        cout << "\t";
-    cout << " |\n";
-
-    // middle
-    for (i = 0; i < nodes; i++)
-    {
-        if (i < 10)
-            cout << i << " |\t";
-        else
-            cout << i << "|\t";
-
-        for (j = 0; j < nodes; j++)
-        {
-            if (input[i][j] == INT_MAX)
-                cout << "-" << "\t";
-            else
-                cout << input[i][j] << "\t";
-        }
-        cout << " |\n";
-    }
-
-    // bottom
-    cout << "  |";
-    fill_n(ostream_iterator<char>(cout), (nodes + 1) * 8 - 2, '_');
-    cout << "|\n\n";
-}
-
 void printDistance(const int output[2][nodes], const int source = 0)
 {
     cout << "\nDistance measured from node:\n'"

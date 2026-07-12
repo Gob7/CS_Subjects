@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string longestCommonSubsequence(string str1, string str2)
+string longestCommonSubsequence(const string str1, const string str2)
 {
     unsigned int n1 = str1.size(), n2 = str2.size(), i, j;
     int tableLCS[n1 + 1][n2 + 1];
@@ -35,6 +35,7 @@ string longestCommonSubsequence(string str1, string str2)
             j--;
     }
 
+    cout << "\nLongest Common Subsequence Table:";
     matrixPrint(tableLCS[0], n1 + 1, n2 + 1, str1, str2);
     return str;
 }
