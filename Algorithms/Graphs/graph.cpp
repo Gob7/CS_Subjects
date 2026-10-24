@@ -9,6 +9,9 @@ using namespace std;
 #include "shortestPath.h"
 #include "minimumSpanningTree.h"
 #include "tours.h"
+#include "colouring.h"
+#include "connected.h"
+#include "supplementry.h"
 
 void makeDirectedGraph(int input[][nodes]);
 int main()

@@ -5,12 +5,13 @@ using namespace std;
 #include "appearHalfArray.h"
 #include "longestSubarray.h"
 #include "maxAndMin.h"
+#include "inversion.h"
 
 int main()
 {
     int result[2],
-        arr[] = {1, 1, 1, 2, 2, 1, 1};
-    // arr[] = {5, 8, -43, 100, 3, -9, 0, 29, 9, 1, -5, -7, -85, 2};
+        // arr[] = {1, 1, 1, 2, 2, 1, 1};
+        arr[] = {5, 8, -43, 100, 3, -9, 0, 29, 9, 1, -5, -7, -85, 2};
 
     int length = sizeof(arr) / sizeof(int),
         target = 4;
@@ -27,6 +28,7 @@ int main()
     printMaxMin(result);
     maxMinDC(arr, 0, length - 1, result);
     printMaxMin(result);
+    numberOfInversions(vector<int>(arr, arr + length));
 
     return 0;
 }
